@@ -1,6 +1,7 @@
 CREATE TABLE User (
-    user_ID INTEGER,
-    password VARCHAR(128),
+    user_ID INTEGER NOT NULL AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(250) NOT NULL,
     role VARCHAR(20),
     PRIMARY KEY (user_ID)
 );
