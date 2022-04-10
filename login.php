@@ -4,7 +4,7 @@ require_once "config.php";
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])) {
     $hashpassword = md5($_POST['pwd']);
-    $sql = "select * from dcms.user where username ='" . pg_escape_string($_POST['username']) . "' and password='" . $hashpassword . "'";
+    $sql = "select * from dcms.\"User\" where username ='" . pg_escape_string($_POST['username']) . "' and password='" . $hashpassword . "'";
     $data = pg_query($dbconnect, $sql);
     $login_check = pg_num_rows($data);
 
