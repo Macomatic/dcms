@@ -21,3 +21,7 @@ Open the file "php.ini" in your PHP folder and find the lines
 and remove all the ";".
 
 Then, find the file "httpd.conf" in the "Apache24/conf" folder. At the end of the file, add the code block `LoadFile "C:\php\libpq.dll"`
+
+Create a schema in pgAdmin named "dcms".
+
+Run the query `SET search_path = "dcms";` every time you plan on modifying the database.
