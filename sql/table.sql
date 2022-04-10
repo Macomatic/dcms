@@ -8,14 +8,15 @@ CREATE TABLE "User"(
 
 CREATE TABLE Patient (
     patient_ID INTEGER,
+	PRIMARY KEY (patient_ID),
     name VARCHAR(20),
     gender VARCHAR(20),
     insurance VARCHAR(20),
     ssn INTEGER,
     email VARCHAR(50),
     dateOfBirth DATE,
-    address VARCHAR(50),
-    PRIMARY KEY (patient_ID) REFERENCES User(user_ID)
+    address VARCHAR(50),  
+	FOREIGN KEY (patient_ID)  REFERENCES "User"(user_ID)
 );
 
 CREATE TABLE PhoneNumbers(
@@ -25,24 +26,26 @@ CREATE TABLE PhoneNumbers(
 );
 
 CREATE TABLE Employee(
-    employee_ID INTEGER REFERENCES User(user_ID),
+    employee_ID INTEGER REFERENCES "User"(user_ID),
+	PRIMARY KEY (employee_ID),
     name VARCHAR(20),
     address VARCHAR(50),
     role VARCHAR(20),
     employmentType VARCHAR(20),
     ssn INTEGER,
     salary INTEGER,
-    PRIMARY KEY (employee_ID) REFERENCES User(user_ID)
+	FOREIGN KEY (employee_ID) REFERENCES "User"(user_ID)
 );
 
 CREATE TABLE Branch(
     branch_ID INTEGER,
-    city VARCHAR(20)
+    city VARCHAR(20),
     PRIMARY KEY (branch_ID)
 );
 
 CREATE TABLE Appointment(
     appointment_ID INTEGER,
+	treatment_ID INTEGER,
     patient_ID INTEGER,
     dentist INTEGER,
     date DATE,
@@ -69,22 +72,18 @@ CREATE TABLE AppointmentProcedure(
 );
 
 CREATE TABLE Treatment(
-    appointmentType VARCHAR(20),
+	treatment_ID INTEGER,
     patientCondition VARCHAR(20),
     treatmentType VARCHAR(20),
-    medication VARCHAR(50)
-    PRIMARY KEY (appointmentType, patientCondition, treatmentType),
-    FOREIGN KEY (appointmentType) REFERENCES Appointment(appointmentType)
+    medication VARCHAR(50),
+    PRIMARY KEY (treatment_ID)
 );
 
 CREATE TABLE TreatmentSymptoms(
-    appointmentType VARCHAR(20),
-    patientCondition VARCHAR(20),
-    treatmentType VARCHAR(20),
+    treatment_ID INTEGER,
     symptom VARCHAR(50),
-    FOREIGN KEY (appointmentType) REFERENCES Appointment(appointmentType),
-    FOREIGN KEY (patientCondition) REFERENCES Treatment(patientCondition),
-    FOREIGN KEY (treatmentType) REFERENCES Treatment(treatmentType)
+    FOREIGN KEY (treatment_ID) REFERENCES Treatment(treatment_ID)
+
 );
 
 

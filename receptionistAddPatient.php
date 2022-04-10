@@ -6,7 +6,7 @@ $fullName = $_POST['fName'].$_POST['mName'].$_POST['lName'];
 $fullAddress = $_POST['st'].', '.$_POST['city'].', '.$_POST['prov'];
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
-    $sql = "insert into dcms.Patient(name,gender,insurance,ssn,email,dateOfBirth,address)values('".$fullName."','".$_POST['gender']."','".$_POST['insurance']."','".$_POST['ssn']."','".$_POST['email']."','".$_POST['dob']."','".$fullAddress."')";
+    $sql = "insert into dcms.Patient(name,gender,insurance,ssn,email,dateOfBirth,address) values('".$fullName."','".$_POST['gender']."','".$_POST['insurance']."','".$_POST['ssn']."','".$_POST['email']."','".$_POST['dob']."','".$fullAddress."')";
     $ret = pg_query($dbconnect, $sql);
     if($ret) {
         echo "Data saved Successfully";
