@@ -18,7 +18,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
         echo "Something Went Wrong";
     }
 
-    $sql = "insert into Patient(patient_ID,name,gender,insurance,ssn,email,dateOfBirth,address) values('".$randomNum."','".$fullName."','".$_POST['gender']."','".$_POST['insurance']."','".$_POST['ssn']."','".$_POST['email']."','".$_POST['dob']."','".$fullAddress."')";
+    $sql = "insert into dcms.Patient(patient_ID,name,gender,insurance,ssn,email,dateOfBirth,address) values('".$randomNum."','".$fullName."','".$_POST['gender']."','".$_POST['insurance']."','".$_POST['ssn']."','".$_POST['email']."','".$_POST['dob']."','".$fullAddress."')";
     $ret = pg_query($dbconnect, $sql);
     if($ret) {
         echo "Data saved Successfully";
