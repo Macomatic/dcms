@@ -7,7 +7,7 @@ CREATE TABLE User (
 );
 
 CREATE TABLE Patient (
-    patient_ID INTEGER,
+    patient_ID INTEGER REFERENCES User(user_ID),
     name VARCHAR(20),
     gender VARCHAR(20),
     insurance VARCHAR(20),
@@ -15,7 +15,7 @@ CREATE TABLE Patient (
     email VARCHAR(50),
     dateOfBirth DATE,
     address VARCHAR(50),
-    PRIMARY KEY (patient_ID) REFERENCES User(user_ID)
+    PRIMARY KEY (patient_ID)
 );
 
 CREATE TABLE PhoneNumbers(
@@ -32,12 +32,12 @@ CREATE TABLE Employee(
     employmentType VARCHAR(20),
     ssn INTEGER,
     salary INTEGER,
-    PRIMARY KEY (employee_ID) REFERENCES User(user_ID)
+    PRIMARY KEY (employee_ID)
 );
 
 CREATE TABLE Branch(
     branch_ID INTEGER,
-    city VARCHAR(20)
+    city VARCHAR(20),
     PRIMARY KEY (branch_ID)
 );
 
@@ -72,7 +72,7 @@ CREATE TABLE Treatment(
     appointmentType VARCHAR(20),
     patientCondition VARCHAR(20),
     treatmentType VARCHAR(20),
-    medication VARCHAR(50)
+    medication VARCHAR(50),
     PRIMARY KEY (appointmentType, patientCondition, treatmentType),
     FOREIGN KEY (appointmentType) REFERENCES Appointment(appointmentType)
 );
@@ -102,4 +102,41 @@ CREATE TABLE Reviews(
     cleanliness VARCHAR(100),
     value INTEGER,
     FOREIGN KEY (patient_ID) REFERENCES Patient(patient_ID)
+);
+CREATE TABLE Dentist(
+	dentist_ID INTEGER REFERENCES Employee(employee_ID)
+);
+CREATE TABLE Hygienist(
+	hygienist_ID INTEGER REFERENCES Employee(employee_ID)
+);
+CREATE TABLE Receptionist(
+	receptionist_ID INTEGER REFERENCES Employee(employee_ID)
+);
+CREATE TABLE Branch_Manager(
+	manager_ID INTEGER REFERENCES Employee(employee_ID)
+);
+CREATE TABLE Branch(
+	branch_ID INTEGER,
+    city varchar(100),
+    PRIMARY KEY (branch_id)
+);
+CREATE TABLE Patient_Billing(
+	bill_ID INTEGER,
+    appointments INTEGER,
+    patientBill INTEGER,
+    insuranceBill INTEGER,
+    totalAmount INTEGER,
+    paymentMethod INTEGER
+);
+CREATE TABLE Fee_Charge(
+	fee_ID INTEGER,
+    procedures INTEGER,
+    feeCode INTEGER,
+    charge INTEGER
+);
+CREATE TABLE Insurance_Claim(
+	cost_of_treatment INTEGER
+);
+CREATE TABLE Patient_Charts(
+	progress varchar(100)
 );
