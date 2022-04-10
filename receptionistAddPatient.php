@@ -1,9 +1,21 @@
 <?php
 // Include config file
 require_once "config.php";
- 
+
+$fullName = $_POST['fName'].$_POST['mName'].$_POST['lName'];
+$fullAddress = $_POST['st'].', '.$_POST['city'].', '.$_POST['prov'];
+
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
-    header('Location: receptionist.php');
+    $sql = "insert into dcms.Patient(name,gender,insurance,ssn,email,dateOfBirth,address)values('".$fullName."','".$_POST['gender']."','".$_POST['insurance']."','".$_POST['ssn']."','".$_POST['email']."','".$_POST['dob']."','".$fullAddress."')";
+    $ret = pg_query($dbconnect, $sql);
+    if($ret) {
+        echo "Data saved Successfully";
+        header('Location: receptionist.php');
+    }
+    else { 
+        echo "Something Went Wrong";
+    }
+    
 }
 ?>
 
@@ -30,7 +42,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 
     <div class="form-group">
       <label for="mName">Middle Name (if applicable):</label>
-      <input type="text" class="form-control" id="mName" placeholder="Enter midle name if applicable" name="mName">
+      <input type="text" class="form-control" id="mName" placeholder="Enter midle name if applicable" name="mName" value="">
     </div>
 
     <div class="form-group">

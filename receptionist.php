@@ -12,7 +12,10 @@
   <h2>Receptionist Page</h2>
     <a href="receptionistAddPatient.php">
       <button>Add Patient</button>
+
     </a>
+    <label for="search">Search for a patient: </label>
+    <input type="text" id="search" name="search" placeholder="Search for a name">
 </div>
 
 
