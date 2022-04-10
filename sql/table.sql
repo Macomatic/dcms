@@ -1,5 +1,5 @@
 CREATE TABLE "User"(
-    user_ID SERIAL,
+    user_ID INTEGER,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(250) NOT NULL,
     role VARCHAR(20),

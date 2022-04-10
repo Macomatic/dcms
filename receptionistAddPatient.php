@@ -4,13 +4,25 @@ require_once "config.php";
 
 $fullName = $_POST['fName'].$_POST['mName'].$_POST['lName'];
 $fullAddress = $_POST['st'].', '.$_POST['city'].', '.$_POST['prov'];
+$randomNum = random_int(1,99999999);
+$userName = $fullName.$randomNum;
+$password = "password";
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
-    $sql = "insert into dcms.Patient(name,gender,insurance,ssn,email,dateOfBirth,address) values('".$fullName."','".$_POST['gender']."','".$_POST['insurance']."','".$_POST['ssn']."','".$_POST['email']."','".$_POST['dob']."','".$fullAddress."')";
+    $sql = "insert into dcms.user(user_ID,username,password) values('".$randomNum."','".$userName."','".$password."')";
     $ret = pg_query($dbconnect, $sql);
     if($ret) {
         echo "Data saved Successfully";
-        header('Location: receptionist.php');
+    }
+    else { 
+        echo "Something Went Wrong";
+    }
+
+    $sql = "insert into Patient(patient_ID,name,gender,insurance,ssn,email,dateOfBirth,address) values('".$randomNum."','".$fullName."','".$_POST['gender']."','".$_POST['insurance']."','".$_POST['ssn']."','".$_POST['email']."','".$_POST['dob']."','".$fullAddress."')";
+    $ret = pg_query($dbconnect, $sql);
+    if($ret) {
+        echo "Data saved Successfully";
+        //header('Location: receptionist.php');
     }
     else { 
         echo "Something Went Wrong";

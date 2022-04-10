@@ -2,9 +2,11 @@
 // Include config file
 require_once "config.php";
  
+$randomNum = random_int(1,99999999);
+
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     
-  $sql = "insert into dcms.user(username,password,role)values('".$_POST['username']."','".md5($_POST['pwd']). "','". $_POST['role']."')";
+  $sql = "insert into dcms.user(username,password,role,user_ID)values('".$_POST['username']."','".md5($_POST['pwd']). "','". $_POST['role']."','".$randomNum."')";
   $ret = pg_query($dbconnect, $sql);
   if($ret){
       
