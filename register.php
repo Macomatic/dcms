@@ -6,7 +6,7 @@ $randomNum = random_int(1,99999999);
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     
-  $sql = "insert into dcms.user(user_ID,username,password,role)values('".$randomNum."','".$_POST['username']."','".md5($_POST['pwd']). "','". $_POST['role']."')";
+  $sql = "insert into dcms.\"User\"(user_ID,username,password,role)values('".$randomNum."','".$_POST['username']."','".md5($_POST['pwd']). "','". $_POST['role']."')";
   $ret = pg_query($dbconnect, $sql);
   if($ret){
       

@@ -9,7 +9,7 @@ $userName = $fullName.$randomNum;
 $password = "password";
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
-    $sql = "insert into dcms.user(user_ID,username,password) values('".$randomNum."','".$userName."','".$password."')";
+    $sql = "insert into dcms.\"User\"(user_ID,username,password) values('".$randomNum."','".$userName."','".$password."')";
     $ret = pg_query($dbconnect, $sql);
     if($ret) {
         echo "Data saved Successfully";
