@@ -4,7 +4,7 @@ require_once "config.php";
  
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     
-    $sql = "insert into dcms.user(username,password)values('".$_POST['username']."','".md5($_POST['pwd'])."')";
+  $sql = "insert into dcms.user(username,password,role)values('".$_POST['username']."','".md5($_POST['pwd']). "','". $_POST['role']."')";
   $ret = pg_query($dbconnect, $sql);
   if($ret){
       
@@ -33,13 +33,22 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
      
     <div class="form-group">
       <label for="username">Username:</label>
-      <input type="email" class="form-control" id="username" placeholder="Enter username" name="username">
+      <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
     </div>
     
      
     <div class="form-group">
       <label for="pwd">Password:</label>
       <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <select class="form-control" name="role">
+        <option value="receptionist">Receptionist</option>
+        <option value="dentistHygienist">Dentist/Hygienist</option>
+        <option value="patient">Patient</option>
+      </select>
     </div>
      
     <input type="submit" name="submit" class="btn btn-primary" value="Submit">
