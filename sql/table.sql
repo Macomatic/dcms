@@ -1,5 +1,5 @@
-CREATE TABLE "User" (
-    user_ID INTEGER NOT NULL AUTO_INCREMENT,
+CREATE TABLE "User"(
+    user_ID SERIAL,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(250) NOT NULL,
     role VARCHAR(20),
