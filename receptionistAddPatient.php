@@ -2,13 +2,12 @@
 // Include config file
 require_once "config.php";
 
-$fullName = $_POST['fName'].$_POST['mName'].' '.$_POST['lName'];
-$fullAddress = $_POST['st'].', '.$_POST['city'].', '.$_POST['prov'];
-$randomNum = random_int(1,99999999);
-$userName = $fullName.$randomNum;
-$password = "password";
-
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
+  $fullName = $_POST['fName'].$_POST['mName'].' '.$_POST['lName'];
+  $fullAddress = $_POST['st'].', '.$_POST['city'].', '.$_POST['prov'];
+  $randomNum = random_int(1,99999999);
+  $userName = $fullName.$randomNum;
+  $password = "password";
     $sql = "insert into dcms.\"User\"(user_ID,username,password) values('".$randomNum."','".$userName."','".$password."')";
     $ret = pg_query($dbconnect, $sql);
     if($ret) {
