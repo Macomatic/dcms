@@ -1,41 +1,34 @@
 <?php
-// Include config file
-require_once "config.php";
+  // Include config file
+  require_once "config.php";
+  //error_reporting(E_ALL ^ E_DEPRECATED);
+  $patientInfo = [];
 
-if(isset($_POST['submit'])&&!empty($_POST['submit'])){
-  if ($_POST['fName'] != NULL && $_POST['lName'] != NULL && $_POST['st'] != NULL && $_POST['city'] != NULL && $_POST['prov'] != NULL && $_POST['dob'] != NULL && $_POST['email'] != NULL && $_POST['phoneNum'] != NULL && $_POST['lName'] != NULL && $_POST['gender'] != NULL && $_POST['insurance'] != NULL && $_POST['ssn'] != NULL) {
-    $fullName = $_POST['fName'].' '.$_POST['mName'].' '.$_POST['lName'];
-    $fullAddress = $_POST['st'].', '.$_POST['city'].', '.$_POST['prov'];
-    $randomNum = random_int(1,99999999);
-    $userName = $fullName.$randomNum;
-    $password = "password";
-    $role = "patient";
-    $sql = "insert into dcms.\"User\"(user_ID,username,password,role) values('".$randomNum."','".$userName."','".md5($password)."','".$role."')";
-    $ret = pg_query($dbconnect, $sql);
-    if($ret) {
-        
-      $sql = "insert into dcms.Patient(patient_ID,name,gender,insurance,ssn,email,dateOfBirth,address) values('".$randomNum."','".$fullName."','".$_POST['gender']."','".$_POST['insurance']."','".$_POST['ssn']."','".$_POST['email']."','".$_POST['dob']."','".$fullAddress."')";
-      $ret = pg_query($dbconnect, $sql);
-      if($ret) {
-        echo "<p style='color:#39C16E;font-weight: bold;'>".$_POST['fName']." was added to the database succesfully!"."</p>";
-        // /header('Location: receptionist.php');
-      }
-      else { 
-        echo "Something Went Wrong";
-      }
 
+
+  $query = 'select * from dcms.Patient';
+  $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
+  while ($row = pg_fetch_row($rs)) {
+    if ($row[1] == $_GET['name']) {
+        $patientInfo[] = $row[0];
+        $patientInfo[] = $row[1];
+        $patientInfo[] = $row[2];
+        $patientInfo[] = $row[3];
+        $patientInfo[] = $row[4];
+        $patientInfo[] = $row[5];
+        $patientInfo[] = $row[6];
+        $patientInfo[] = $row[7];
+        break;
     }
-    else { 
-        echo "Something Went Wrong";
-    }
-  
-  }
-
-  else {
-    echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
-  }
     
-}
+  }
+
+//   $fName = ;
+//   $mName = "";
+//   $lName = ;
+
+
+  
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +91,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 
     <div class="form-group">
       <label for="email">Email Address*:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" maxlength="50">
     </div>
 
     <div class="form-group">
@@ -117,7 +110,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 
     <div class="form-group">
       <label for="insurance">Insurance*:</label>
-      <input type="text" class="form-control" id="insurance" placeholder="Enter insurance" name="insurance">
+      <input type="text" class="form-control" id="insurance" placeholder="Enter insurance" name="insurance" maxlength = "20">
     </div>
 
     <div class="form-group">

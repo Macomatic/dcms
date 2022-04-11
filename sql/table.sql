@@ -9,7 +9,7 @@ CREATE TABLE "User"(
 CREATE TABLE Patient (
     patient_ID INTEGER,
 	PRIMARY KEY (patient_ID),
-    name VARCHAR(20),
+    name VARCHAR(50),
     gender VARCHAR(20),
     insurance VARCHAR(20),
     ssn INTEGER,
