@@ -8,7 +8,8 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
   $randomNum = random_int(1,99999999);
   $userName = $fullName.$randomNum;
   $password = "password";
-    $sql = "insert into dcms.\"User\"(user_ID,username,password) values('".$randomNum."','".$userName."','".$password."')";
+  $role = "patient";
+    $sql = "insert into dcms.\"User\"(user_ID,username,password,role) values('".$randomNum."','".$userName."','".md5($password)."','".$role."')";
     $ret = pg_query($dbconnect, $sql);
     if($ret) {
         
