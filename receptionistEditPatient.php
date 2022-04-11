@@ -63,13 +63,18 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
       $fullName = $_POST['fName'].' '.$_POST['mName'].' '.$_POST['lName'];
       $fullAddress = $_POST['st'].', '.$_POST['city'].', '.$_POST['prov']; 
       $gender = $_POST['gender'];
-      $insurance = $_POST['insurance'].'';
-        $sql = "update dcms.patient set name = '$fullName' where patient_ID = ".$patientInfo[0].";";
-        $ret = pg_query($dbconnect, $sql);
-        
-        $sql = "update dcms.patient set insurance = '$insurance' where patient_ID = ".$patientInfo[0].";";
+      $insurance = $_POST['insurance'];
+      $ssn = $_POST['ssn'];
+      $email = $_POST['email'];
+      $dateOfBirth = $_POST['dob'];
+      $phoneNumber = $_POST['phoneNum'];
+        // $sql = "update dcms.patient set name = '$fullName' where patient_ID = ".$patientInfo[0].";";
+        // $ret = pg_query($dbconnect, $sql);
+        // $sql = "update dcms.patient set insurance = '$insurance' where patient_ID = ".$patientInfo[0].";";
+        // $ret = pg_query($dbconnect, $sql);
 
-            // "update dcms.patient set (name,gender,insurance,ssn,email,dateOfBirth,address,phoneNumber) =('$fullName','$_POST['gender']','$_POST['insurance']','$_POST['ssn']','$_POST['email']','$_POST['dob']','$fullAddress','$_POST['phoneNum']')where patient.patient_id = '$patientInfo[0]'";
+        $sql = "update dcms.patient set (name,gender,insurance,ssn,email,dateOfBirth,address,phoneNumber) =('$fullName','$gender','$insurance','$ssn','$email','$dateOfBirth','$fullAddress','$phoneNumber')where patient_id = '$patientInfo[0]'";
+        $ret = pg_query($dbconnect, $sql);
             // name = ".$fullName.", 
             // gender = ".$_POST['gender'].", 
             // insurance = ".$_POST['insurance'].", 
