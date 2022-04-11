@@ -47,11 +47,55 @@ $street = $addresses[0];
 $city = $addresses[1];
 $prov = $addresses[2];
 
+// $gender = $patientInfo[2];
+// $insurance = $patientInfo[3];
+// $ssn = $patientInfo[4];
+// $email = $patientInfo[5];
+// $dateOfBirth = $patientInfo[6];
+// $phoneNum = $patientInfo[8];
 // echo $street;
 // echo $city;
 // echo $prov;
 
 
+if(isset($_POST['submit'])&&!empty($_POST['submit'])){
+    if ($_POST['fName'] != NULL && $_POST['lName'] != NULL && $_POST['st'] != NULL && $_POST['city'] != NULL && $_POST['prov'] != NULL && $_POST['dob'] != NULL && $_POST['email'] != NULL && $_POST['phoneNum'] != NULL && $_POST['lName'] != NULL && $_POST['gender'] != NULL && $_POST['insurance'] != NULL && $_POST['ssn'] != NULL) {
+      $fullName = $_POST['fName'].' '.$_POST['mName'].' '.$_POST['lName'];
+      $fullAddress = $_POST['st'].', '.$_POST['city'].', '.$_POST['prov']; 
+      $gender = $_POST['gender'];
+      $insurance = $_POST['insurance'].'';
+        $sql = "update dcms.patient set name = '$fullName' where patient_ID = ".$patientInfo[0].";";
+        $ret = pg_query($dbconnect, $sql);
+        
+        $sql = "update dcms.patient set insurance = '$insurance' where patient_ID = ".$patientInfo[0].";";
+
+            // "update dcms.patient set (name,gender,insurance,ssn,email,dateOfBirth,address,phoneNumber) =('$fullName','$_POST['gender']','$_POST['insurance']','$_POST['ssn']','$_POST['email']','$_POST['dob']','$fullAddress','$_POST['phoneNum']')where patient.patient_id = '$patientInfo[0]'";
+            // name = ".$fullName.", 
+            // gender = ".$_POST['gender'].", 
+            // insurance = ".$_POST['insurance'].", 
+            // ssn = ".$_POST['ssn'].", 
+            // email = ".$_POST['email'].", 
+            // dateOfBirth = ".$_POST['dob'].", 
+            // address = ".$fullAddress.", 
+            // phoneNumber = ".$_POST['phoneNum']."
+            // where patient_ID = ".$patientInfo[0].";";
+        
+        if($ret) {
+          echo "<p style='color:#39C16E;font-weight: bold;'>".$_POST['fName']."'s information was updated and saved to the database succesfully!\nRefresh the page or go back to view the updated information."."</p>";
+          // /header('Location: receptionist.php');
+        }
+        else { 
+          echo "Something Went Wrong";
+        }
+  
+
+    }
+  
+    else {
+      echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
+    }
+      
+  }
   
 ?>
 
@@ -125,7 +169,8 @@ $prov = $addresses[2];
 
     <div class="form-group">
       <label for="gender">Gender*:</label>
-      <select name="gender" id="gender" class="form-control" value='<?php echo $patientInfo[2] ?>'>
+      <select name="gender" id="gender" class="form-control">
+        <option selected='<?php echo $patientInfo[2] ?>'><?php echo ucwords($patientInfo[2]) ?></option>
         <option value="male">Male</option>
         <option value="female">Female</option>
         <option value="other">Other</option>
@@ -143,7 +188,7 @@ $prov = $addresses[2];
     </div>
 
 
-    <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+    <input type="submit" name="submit" class="btn btn-primary" value="Update">
   </form>
 </div>
 
