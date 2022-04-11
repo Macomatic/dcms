@@ -15,14 +15,9 @@ CREATE TABLE Patient (
     ssn INTEGER,
     email VARCHAR(50),
     dateOfBirth DATE,
-    address VARCHAR(50),  
+    address VARCHAR(50),
+    phoneNumber VARCHAR(10),  
 	FOREIGN KEY (patient_ID)  REFERENCES "User"(user_ID)
-);
-
-CREATE TABLE PhoneNumbers(
-    patient_ID INTEGER,
-    phoneNumber VARCHAR(10),
-    FOREIGN KEY (patient_ID) REFERENCES Patient(patient_ID)
 );
 
 CREATE TABLE Employee(

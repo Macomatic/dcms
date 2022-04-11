@@ -6,6 +6,7 @@
   $nameArray = [];
   $addressArray = [];
   $emailArray = [];
+  $idArray = [];
 
 
 
@@ -13,6 +14,7 @@
   $query = 'select * from dcms.Patient';
   $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
   while ($row = pg_fetch_row($rs)) {
+    $idArray[] = $row[0];
     $nameArray[] = $row[1];
     $emailArray[] = $row[5];
     $addressArray[] = $row[7];
@@ -44,7 +46,7 @@
   <?php
     $size = sizeof($nameArray);
     for ($x = 0; $x < $size; $x++) {
-      echo "<br/><h4 style='font-weight:bold;'>".$nameArray[$x]."</h4>".$addressArray[$x]."<br/>".$emailArray[$x]."<br/><br/><a href='receptionistEditPatient.php?name=$nameArray[$x]'><button>Edit Information</button></a><a href='receptionistSetPatientAppointment.php'><button>Set Appointment</button></a><br/>";
+      echo "<br/><h4 style='font-weight:bold;'>".$nameArray[$x]."</h4>".$addressArray[$x]."<br/>".$emailArray[$x]."<br/><br/><a href='receptionistEditPatient.php?id=$idArray[$x]'><button>Edit Information</button></a><a href='receptionistSetPatientAppointment.php'><button>Set Appointment</button></a><br/>";
     }
   
   

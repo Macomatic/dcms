@@ -14,7 +14,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     $ret = pg_query($dbconnect, $sql);
     if($ret) {
         
-      $sql = "insert into dcms.Patient(patient_ID,name,gender,insurance,ssn,email,dateOfBirth,address) values('".$randomNum."','".$fullName."','".$_POST['gender']."','".$_POST['insurance']."','".$_POST['ssn']."','".$_POST['email']."','".$_POST['dob']."','".$fullAddress."')";
+      $sql = "insert into dcms.Patient(patient_ID,name,gender,insurance,ssn,email,dateOfBirth,address,phoneNumber) values('".$randomNum."','".$fullName."','".$_POST['gender']."','".$_POST['insurance']."','".$_POST['ssn']."','".$_POST['email']."','".$_POST['dob']."','".$fullAddress."','".$_POST['phoneNum']."')";
       $ret = pg_query($dbconnect, $sql);
       if($ret) {
         echo "<p style='color:#39C16E;font-weight: bold;'>".$_POST['fName']." was added to the database succesfully!"."</p>";
