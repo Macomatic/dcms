@@ -1,11 +1,11 @@
 <?php
   // Include config file
   require_once "config.php";
-  error_reporting(E_ALL ^ E_DEPRECATED);
+  //error_reporting(E_ALL ^ E_DEPRECATED);
 
   if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     $query = 'select * from dcms."User"';
-    $rs = pg_query($query) or die ("Error: ".pg_last_error());
+    $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
     while ($row = pg_fetch_row($rs)) {
       echo "$row[0] $row[1] $row[2] $row[3]\n";
     }
