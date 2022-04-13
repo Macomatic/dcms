@@ -6,19 +6,84 @@ $patientid = [];
 $nameArray = [];
 $apptdate = [];
 $dentistName = [];
+$dentist_ID = [];
+$treatment_ID = [];
+$medication = [];
 $treatmentType = [];
+$patientCondition = [];
 $isCompleted = [];
+$date = [];
+$pName;
 
-$query = 'select * from dcms.Patient';
+
+$patient_ID = $_GET['id'];
+
+$query = 'select * from dcms.appointment';
 $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
 while ($row = pg_fetch_row($rs)) {
-    $patientid[] = $row[0];
-    $nameArray[] = $row[1];
+    if($row[8] == "complete"){
+
+        $treatment_ID[] = $row[1];
+        $dentist_ID[] = $row[3];
+        $date[] = $row[4];
+
+    }
+}
+
+$query = 'SELECT * FROM dcms.patient';
+$rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
+$id = $patient_ID;
+    
+while ($row = pg_fetch_row($rs)) {
+  
+if ($id == $row[0]){
+
+      
+    $pName = $row[1]; 
+    break;
+}
+}
+
+for($i = 0; $i < sizeof($treatment_ID); $i++){  
+    $query = 'SELECT * FROM dcms.employee';
+    $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
+    $id = $dentist_ID[$i];
+    
+    while ($row = pg_fetch_row($rs)) {
+  
+    if ($id == $row[0]){
+
+      
+      $dentistName[] = $row[1]; 
+      break;
+    }
+}
+}
+
+for($i = 0; $i < sizeof($treatment_ID); $i++){  
+    $query = 'SELECT * FROM dcms.treatment';
+    $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
+    $id = $treatment_ID[$i];
+    
+    while ($row = pg_fetch_row($rs)) {
+  
+    if ($id == $row[0]){
+
+      $patientCondition [] = $row[1];
+      $treatmentType [] = $row[2];
+      $medication [] = $row [3];
+       
+      break;
+    }
+}
 }
 
 
 
+
+
 ?>
+
 <html lang="en">
 <head>
   <title>DCMS: Patient </title>
@@ -27,14 +92,19 @@ while ($row = pg_fetch_row($rs)) {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<div class="container">
+<div class="container" style='text-align: center'>
     <title>Patient Medical History</title>
-    <h1 style="text-align: center">Patient Medical History</h1>
+    <h1 >Patient Medical History</h1>
     <div>
         <?php
-            $length = sizeof($nameArray);
+            
+            $length = sizeof($treatment_ID);
             for ($i = 0; $i < $length; $i++){
-                echo "<a style='text-align: center'><h3>Patient ID: $patientid[$i] <br> Patient Name: $nameArray[$i]<br></h3>";
+                $test = ucwords($patientCondition[$i]);
+                echo "<h3>Patient Name: $pName <br> Dentist Name: $dentistName[$i]<br></h3>";
+                echo "<h4>Patient Condition: $test <br> Treatment Type: $treatmentType[$i]<br></h4>";
+                echo "<h4>Medication: $medication[$i] <br></h4>";
+                echo "<h5>Date: $date[$i] <br></h5>";
             }
         ?>
     </div>
