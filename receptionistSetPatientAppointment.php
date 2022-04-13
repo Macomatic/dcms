@@ -59,7 +59,7 @@ if ('medication' == 6){
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
   if ($_POST['date'] != NULL && $_POST['startTime'] != NULL && $_POST['endTime'] != NULL && $_POST['apptType'] != NULL && $_POST['status'] != NULL && $_POST['room'] != NULL) {
-    $sql = "insert into dcms.Appointment(appointment_ID,treatment_ID,patient_ID,dentist,date,startTime,endTime,appointmentType,status,room) values('".$apptNum."','".$_POST['treatmentType']."','".$patientID[0]."','".$_POST['dentist']."','".$_POST['date']."','".$_POST['startTime']."','".$_POST['endTime']."','".$_POST['apptType']."','".$_POST['status']."','".$_POST['room']."')";
+    $sql = "insert into dcms.Appointment(appointment_ID,treatment_ID,patient_ID,dentist,date,startTime,endTime,appointmentType,status,room) values('".$apptNum."','".$_POST['treatmentType']."','".$patientID."','".$_POST['dentist']."','".$_POST['date']."','".$_POST['startTime']."','".$_POST['endTime']."','".$_POST['apptType']."','".$_POST['status']."','".$_POST['room']."')";
     $ret = pg_query($dbconnect, $sql);
   
   }
@@ -111,7 +111,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
                 <?php
                     $length = sizeof($dentistNames);
                     for ($i = 0; $i < $length; $i++){
-                      if ($isDentist[$i] == "dentistHygenist"){
+                      if ($isDentist[$i] == "dentistHygienist"){
                         echo "<option id='dentist' value='$dentistID[$i]'>$dentistNames[$i]</option>";
                       }else{
                         continue;
