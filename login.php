@@ -23,6 +23,9 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])) {
         else if ($role == 'patient') {
           header("Location: patient.php?id=$id");
         }
+        else if ($role == 'branchManager') {
+          header("Location: branchManager.php");
+        }
     }
     else {
       echo "Invalid Details";
