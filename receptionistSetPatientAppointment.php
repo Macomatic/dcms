@@ -35,6 +35,8 @@ while ($row = pg_fetch_row($rs2)){
 $randomNum = random_int(1,99999999);
 $apptNum = $randomNum;
 $randomNum2 = random_int(1,99999999);
+$treatmentType = 'Root Canal';
+
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
   if ($_POST['treatmentType'] == 1){
     $treatmentType = 'Root Canal';
@@ -128,17 +130,17 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     <div class="form-group">
       <label for="treatmentType">Treatment Type:</label>
       <select name="treatmentType" id="treatmentType">
-        <option id="rootCanal" value="l">Root Canal</option>
-        <option id="filling" value="2">Filling</option>
-        <option id="extraction" value="3">Tooth Extraction</option>
+        <option id="rootCanal" value='1'>Root Canal</option>
+        <option id="filling" value='2'>Filling</option>
+        <option id="extraction" value='3'>Tooth Extraction</option>
       </select> 
     </div>
     <div class="form-group">
       <label for="medication">Medication:</label>
       <select name="medication" id="medication">
-        <option id="painKillers" value="4">Painkillers</option>
-        <option id="anesthesia" value="5">Anesthesia</option>
-        <option id="antibiotics" value="6">Antibiotics</option>
+        <option id="painKillers" value='4'>Painkillers</option>
+        <option id="anesthesia" value='5'>Anesthesia</option>
+        <option id="antibiotics" value='6'>Antibiotics</option>
       </select> 
     </div>
     <h3>Time</h3>
@@ -149,12 +151,12 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 
     <div class="form-group">
       <label for="startTime">Start Time:</label>
-      <input type="time" class="form-control" id="startTime" placeholder="Enter Start Time" name="startTime">
+      <input type="text" class="form-control" id="startTime" placeholder="Enter Start Time" name="startTime">
     </div>
 
     <div class="form-group">
       <label for="endTime">End Time:</label>
-      <input type="time" class="form-control" id="endTime" placeholder="Enter End Time" name="endTime">
+      <input type="text" class="form-control" id="endTime" placeholder="Enter End Time" name="endTime">
     </div>
     <br>
 
