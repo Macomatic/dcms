@@ -81,6 +81,7 @@ CREATE TABLE Treatment(
     patientCondition VARCHAR(20),
     treatmentType VARCHAR(20),
     medication VARCHAR(50),
+    treatmentType_ID INTEGER,
     PRIMARY KEY (treatment_ID)
 );
 
