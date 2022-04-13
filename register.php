@@ -25,10 +25,6 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
           echo "Something Went Wrong";
         }
       }
-
-      else {
-        echo "Something Went Wrong";
-      }
           
   }else{
       
