@@ -101,24 +101,25 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
       <label for="patientCondition">Patient Condition:</label>
       <select name="patientCondition" id="patientCondition">
         <option id="low" value="low">Low</option>;
-        <option id="moderate" value="moderate">Moderate</option>;
-        <option id="severe" value="severe">Severe</option>;
+        <option id="moderate" value="moderate">Moderate</option>
+        <option id="severe" value="severe">Severe</option>
+        </select> 
     </div>
     <br>
     <div class="form-group">
       <label for="treatmentType">Treatment Type:</label>
       <select name="treatmentType" id="treatmentType">
-        <option id="rootCanal" value="rootCanal">Root Canal</option>;
-        <option id="filling" value="filling">Filling</option>;
-        <option id="extraction" value="extraction">Tooth Extraction</option>;
-    </div>
-    <br>
+        <option id="rootCanal" value="rootCanal">Root Canal</option>
+        <option id="filling" value="filling">Filling</option>
+        <option id="extraction" value="extraction">Tooth Extraction</option>
+      </select> 
     <div class="form-group">
       <label for="medication">Medication:</label>
       <select name="medication" id="medication">
-        <option id="painKillers" value="painKillers">Painkillers</option>;
-        <option id="anesthesia" value="anesthesia">Anesthesia</option>;
-        <option id="antibiotics" value="antibiotics">Antibiotics</option>;
+        <option id="painKillers" value="painKillers">Painkillers</option>
+        <option id="anesthesia" value="anesthesia">Anesthesia</option>
+        <option id="antibiotics" value="antibiotics">Antibiotics</option>
+      </select> 
     </div>
     <br>
     <br>
