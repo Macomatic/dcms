@@ -2,6 +2,7 @@
 // Include config file
 require_once "config.php";
 
+$patientID = $_GET['id'];
 $patientid = [];
 $nameArray = [];
 $apptdate = [];
@@ -16,6 +17,13 @@ while ($row = pg_fetch_row($rs)) {
     $nameArray[] = $row[1];
 }
 
+$queryAppointment = 'select * from dcms.Appointment';
+$rs2 = pg_query($dbconnect, $queryAppointment) or die ("Error: ".pg_last_error());
+while ($row = pg_fetch_row($rs2)) {
+    $status[] = $row[8];
+    $appointmentID[] = $row[0];
+    $treatmentID[] = $row[1];
+}
 
 
 ?>
@@ -25,9 +33,22 @@ while ($row = pg_fetch_row($rs)) {
     <div>
         <?php
             $length = sizeof($nameArray);
+            $lengthStatus = sizeof($status);
             for ($i = 0; $i < $length; $i++){
                 echo "<a style='text-align: center'><h3>Patient ID: $patientid[$i] <br> Patient Name: $nameArray[$i]<br></h3>";
             }
+            for ($j = 0; $j < $lengthStatus; $j++){
+                if ($status[$j] == "Not Complete"){
+                    echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
+                }
+                else if ($status[$j] == "In Progress"){
+                    echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
+                }
+                else if ($status[$j] == "Complete"){
+                    echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
+                }
+            }
+               
         ?>
     </div>
 </html>

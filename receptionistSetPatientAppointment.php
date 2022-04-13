@@ -169,9 +169,9 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     <div class="form-group">
       <label for="status">Status:</label>
       <select name="status" id="status">
-        <option id="status" value="notComplete">Not Complete</option>
-        <option id="status" value='inProgress'>In Progress</option>
-        <option id="status" value='complete'>Complete</option>
+        <option id="status" value="Not Complete">Not Complete</option>
+        <option id="status" value='In Progress'>In Progress</option>
+        <option id="status" value='Complete'>Complete</option>
       </select> 
     </div>
 
