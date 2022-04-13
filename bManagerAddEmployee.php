@@ -7,10 +7,10 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     $fullName = $_POST['fName'].' '.$_POST['mName'].' '.$_POST['lName'];
     $fullAddress = $_POST['st'].', '.$_POST['city'].', '.$_POST['prov'];
     $randomNum = random_int(1,99999999);
-    $randomPassNum = random_int(0,9999999);
     $userName = $fullName.$randomNum;
-    $password = $password.$randomPassNum;
-    $role = "patient";
+    $password = "password".$randomNum;
+    $role = $_POST['role'];
+    $branchID = 123; // temp, need to grab this
     $sql = "insert into dcms.\"User\"(user_ID,username,password,role) values('".$randomNum."','".$userName."','".md5($password)."','".$role."')";
     $ret = pg_query($dbconnect, $sql);
     if($ret) {
@@ -18,8 +18,11 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
       $sql = "insert into dcms.Patient(patient_ID,name,gender,insurance,ssn,email,dateOfBirth,address,phoneNumber) values('".$randomNum."','".$fullName."','".$_POST['gender']."','".$_POST['insurance']."','".$_POST['ssn']."','".$_POST['email']."','".$_POST['dob']."','".$fullAddress."','".$_POST['phoneNum']."')";
       $ret = pg_query($dbconnect, $sql);
       if($ret) {
-        echo "<p style='color:#39C16E;font-weight: bold;'>".$_POST['fName']." was added to the patient database succesfully!"."</p>";
-        // /header('Location: receptionist.php');
+        $sql = "insert into dcms.Employee(employee_ID,name,address,role,employmentType,ssn,salary,branch_ID) values('".$randomNum."','".$fullName."','".$fullAddress."','".$role."','".$_POST['empType']."','".$_POST['ssn']."','".$_POST['salary']."','".$branchID."')";
+        $ret = pg_query($dbconnect, $sql);
+        if ($ret) {
+            echo "<p style='color:#39C16E;font-weight: bold;'>".$_POST['fName']." was added to the employee database succesfully!"."</p>";
+        }
       }
       else { 
         echo "Something Went Wrong";
@@ -42,7 +45,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>DCMS: Add Patient </title>
+  <title>DCMS: Add Employee </title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -50,13 +53,13 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 <body>
 
 <div class="container">
-  <h2>Add a new patient</h2>
-  <a href="receptionist.php">
+  <h2>Add a new employee</h2>
+  <a href="branchManager.php">
       <button>Go back</button>
     </a>
   <form method="post">
   
-    <h3>Patient Name</h3>
+    <h3>Employee Name</h3>
     <div class="form-group">
       <label for="fName">First Name*:</label>
       <input type="text" class="form-control" id="fName" placeholder="Enter first name" name="fName">
@@ -126,6 +129,28 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
       <input type="number" class="form-control" id="ssn" placeholder="Enter SSN" name="ssn">
     </div>
 
+    <br>
+    <h3>Job Info</h3>
+    <div class="form-group">
+      <label for="role">Job role*:</label>
+      <select name="role" id="role" class="form-control">
+        <option value="dentistHygienist">Dentist/Hygienist</option>
+        <option value="receptionist">Receptionist</option>
+    </select>
+    </div>
+
+    <div class="form-group">
+      <label for="empType">Employment Type*:</label>
+      <select name="empType" id="empType" class="form-control">
+        <option value="ft">Full-time</option>
+        <option value="pt">Part-time</option>
+    </select>
+    </div>
+
+    <div class="form-group">
+      <label for="salary">Salary ($)*:</label>
+      <input type="number" class="form-control" id="salary" placeholder="Enter salary ($)" name="salary">
+    </div>
 
     <input type="submit" name="submit" class="btn btn-primary" value="Submit">
   </form>
