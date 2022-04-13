@@ -34,18 +34,46 @@ while ($row = pg_fetch_row($rs2)){
 
 $randomNum = random_int(1,99999999);
 $apptNum = $randomNum;
-$treatmentNum = $randomNum;
+
+$treatmentType = [];
+if ('treatmentType' == 1){
+  $treatmentType = 'Root Canal';
+}
+if ('treatmentType' == 2){
+  $treatmentType = 'Tooth Extraction';
+}
+if ('treatmentType' == 3){
+  $treatmentType = 'Tooth Filling';
+}
+
+$medicationType = [];
+if ('medication' == 4){
+  $medicationType = 'Pain Killers';
+}
+if ('medication' == 5){
+  $medicationType = 'Anesthesia';
+}
+if ('medication' == 6){
+  $medicationType = 'Antibiotics';
+}
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
   if ($_POST['date'] != NULL && $_POST['startTime'] != NULL && $_POST['endTime'] != NULL && $_POST['apptType'] != NULL && $_POST['status'] != NULL && $_POST['room'] != NULL) {
-    $sql = "insert into dcms.Appointment(appointment_ID,treatment_ID,patient_ID,dentist,date,startTime,endTime,appointmentType,status,room) values('".$apptNum."','".$treatmentNum."','".$patientID[0]."','".$_POST['dentist']."','".$_POST['date']."','".$_POST['startTime']."','".$_POST['endTime']."','".$_POST['apptType']."','".$_POST['status']."','".$_POST['room']."')";
+    $sql = "insert into dcms.Appointment(appointment_ID,treatment_ID,patient_ID,dentist,date,startTime,endTime,appointmentType,status,room) values('".$apptNum."','".$_POST['treatmentType']."','".$patientID[0]."','".$_POST['dentist']."','".$_POST['date']."','".$_POST['startTime']."','".$_POST['endTime']."','".$_POST['apptType']."','".$_POST['status']."','".$_POST['room']."')";
     $ret = pg_query($dbconnect, $sql);
   
   }
   else {
     echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
   }
-    
+  if ($_POST['treatmentType'] != NULL && $_POST['patientCondition'] != NULL && $treatmentType != NULL && $_POST['medication'] != NULL) {
+    $sql = "insert into dcms.Treatment(treatment_ID,patientCondition,treatmentType,medication) values('".$_POST['treatmentType']."','".$_POST['patientCondition']."','".$treatmentType."','".$_POST['apptType']."','".$_POST['status']."','".$_POST['room']."')";
+    $ret = pg_query($dbconnect, $sql);
+  
+  }
+  else {
+    echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
+  }
 }
 ?>
 
@@ -73,10 +101,6 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     <div class="form-group">
       <label for="apptID"><?php echo "<h3>Appointment ID: $apptNum</h3>"?></label>
     </div>
-
-    <div class="form-group">
-      <label for="treatmentID"><?php echo "<h3>Treatment ID: $treatmentNum</h3>" ?></label>
-    </div>
     
      <br>
     <h3>Dentist</h3>
@@ -100,29 +124,27 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     <div class="form-group">
       <label for="patientCondition">Patient Condition:</label>
       <select name="patientCondition" id="patientCondition">
-        <option id="low" value="low">Low</option>;
+        <option id="low" value="low">Low</option>
         <option id="moderate" value="moderate">Moderate</option>
         <option id="severe" value="severe">Severe</option>
         </select> 
     </div>
-    <br>
     <div class="form-group">
       <label for="treatmentType">Treatment Type:</label>
       <select name="treatmentType" id="treatmentType">
-        <option id="rootCanal" value="rootCanal">Root Canal</option>
-        <option id="filling" value="filling">Filling</option>
-        <option id="extraction" value="extraction">Tooth Extraction</option>
+        <option id="rootCanal" value="l">Root Canal</option>
+        <option id="filling" value="2">Filling</option>
+        <option id="extraction" value="3">Tooth Extraction</option>
       </select> 
+    </div>
     <div class="form-group">
       <label for="medication">Medication:</label>
       <select name="medication" id="medication">
-        <option id="painKillers" value="painKillers">Painkillers</option>
-        <option id="anesthesia" value="anesthesia">Anesthesia</option>
-        <option id="antibiotics" value="antibiotics">Antibiotics</option>
+        <option id="painKillers" value="4">Painkillers</option>
+        <option id="anesthesia" value="5">Anesthesia</option>
+        <option id="antibiotics" value="6">Antibiotics</option>
       </select> 
     </div>
-    <br>
-    <br>
     <h3>Time</h3>
     <div class="form-group">
       <label for="date">Appointment Date:</label>
