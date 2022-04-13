@@ -14,14 +14,14 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])) {
 
     if($login_check > 0) {
         echo "Login Successfully";
-        if ($role = 'dentistHygienist') {
+        if ($role == 'dentistHygienist') {
           header("Location: dentalStaff.php?id=$id");
         }
         else if ($role == 'receptionist') {
           header("Location: receptionist.php");
         }
         else if ($role == 'patient') {
-          header("Location: patient.php");
+          header("Location: patient.php?id=$id");
         }
     }
     else {

@@ -1,3 +1,8 @@
+<?php
+    require_once "config.php";
+    $patientID = $_GET['id'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +15,11 @@
 <body>
     <div class="container">
         <h2 >My Medical History</h2>
-        <a href="patientMedicalHistory.php">
+        <a href='patientMedicalHistory.php?id=<?php echo $patientID ?>'>
             <button>Get Medical History</button>
         </a>
         <h2 >My Appointments </h2>
-        <a href="patientAppointments.php">
+        <a href='patientAppointments.php?id=<?php echo $patientID ?>'>
             <button>Get Appointments</button>
         </a>
     </div>

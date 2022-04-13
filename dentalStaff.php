@@ -77,7 +77,7 @@ for ($i = 0; $i < sizeof($startArray); $i++)  {
   echo "<h5>"."Start Time: ".$startArray[$i]."</h5>";
   echo "<h5>"."End Time: ".$endArray[$i]."</h5>";
   echo "<h5>"."Appointment ID: ".$appointmentArray[$i]."</h5>";
-  echo "<a href='patientMedicalHistory.php'> <button>View Patient</button> </a>" ."<br/>";
+  echo "<a href='patientMedicalHistory.php?id=$patientArray[$i]'> <button>View Patient</button> </a>" ."<br/>";
 }
   ?>
 
