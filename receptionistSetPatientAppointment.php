@@ -34,32 +34,29 @@ while ($row = pg_fetch_row($rs2)){
 
 $randomNum = random_int(1,99999999);
 $apptNum = $randomNum;
-
-$treatmentType = [];
-if ($_POST['treatmentType'] == 1){
-  $treatmentType = 'Root Canal';
-}
-if ($_POST['treatmentType'] == 2){
-  $treatmentType = 'Tooth Extraction';
-}
-if ($_POST['treatmentType'] == 3){
-  $treatmentType = 'Tooth Filling';
-}
-
-$medicationType = [];
-if ($_POST['medication'] == 4){
-  $medicationType = 'Pain Killers';
-}
-if ($_POST['medication'] == 5){
-  $medicationType = 'Anesthesia';
-}
-if ($_POST['medication'] == 6){
-  $medicationType = 'Antibiotics';
-}
-
+$randomNum2 = random_int(1,99999999);
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
+  if ($_POST['treatmentType'] == 1){
+    $treatmentType = 'Root Canal';
+  }
+  if ($_POST['treatmentType'] == 2){
+    $treatmentType = 'Tooth Extraction';
+  }
+  if ($_POST['treatmentType'] == 3){
+    $treatmentType = 'Tooth Filling';
+  }
+  
+  if ($_POST['medication'] == 4){
+    $medicationType = 'Pain Killers';
+  }
+  if ($_POST['medication'] == 5){
+    $medicationType = 'Anesthesia';
+  }
+  if ($_POST['medication'] == 6){
+    $medicationType = 'Antibiotics';
+  }
   if ($_POST['date'] != NULL && $_POST['startTime'] != NULL && $_POST['endTime'] != NULL && $_POST['apptType'] != NULL && $_POST['status'] != NULL && $_POST['room'] != NULL) {
-    $sql = "insert into dcms.Appointment(appointment_ID,treatment_ID,patient_ID,dentist,date,startTime,endTime,appointmentType,status,room) values('".$apptNum."','".$_POST['treatmentType']."','".$patientID."','".$_POST['dentist']."','".$_POST['date']."','".$_POST['startTime']."','".$_POST['endTime']."','".$_POST['apptType']."','".$_POST['status']."','".$_POST['room']."')";
+    $sql = "insert into dcms.Appointment(appointment_ID,treatment_ID,patient_ID,dentist_ID,date,startTime,endTime,appointmentType,status,room) values('".$apptNum."','".$_POST['treatmentType']."','".$patientID."','".$_POST['dentist']."','".$_POST['date']."','".$_POST['startTime']."','".$_POST['endTime']."','".$_POST['apptType']."','".$_POST['status']."','".$_POST['room']."')";
     $ret = pg_query($dbconnect, $sql);
   
   }
@@ -67,7 +64,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
   }
   if ($_POST['treatmentType'] != NULL && $_POST['patientCondition'] != NULL && $treatmentType != NULL && $medicationType != NULL) {
-    $sql = "insert into dcms.Treatment(treatment_ID,patientCondition,treatmentType,medication)values('".$_POST['treatmentType']."','".$_POST['patientCondition']."','".$treatmentType."','".$medicationType."')";
+    $sql = "insert into dcms.Treatment(treatment_ID,patientCondition,treatmentType,medication,treatmentType_ID)values('".$randomNum2."','".$_POST['patientCondition']."','".$treatmentType."','".$medicationType."','".$_POST['treatmentType']."')";
     $ret = pg_query($dbconnect, $sql);
   }
   else {
