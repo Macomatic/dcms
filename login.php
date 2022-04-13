@@ -23,7 +23,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])) {
         else if ($role == 'patient') {
           header("Location: patient.php")
         }
-    } else {
+    else {
         echo "Invalid Details";
     }
 }
