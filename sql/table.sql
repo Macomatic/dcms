@@ -22,7 +22,7 @@ CREATE TABLE Patient (
 
 CREATE TABLE Branch(
     branch_ID INTEGER,
-    address VARCHAR(20),
+    address VARCHAR(50),
     PRIMARY KEY (branch_ID)
 );
 

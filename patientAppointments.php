@@ -20,6 +20,7 @@ while ($row = pg_fetch_row($rs)) {
 $queryAppointment = 'select * from dcms.Appointment';
 $rs2 = pg_query($dbconnect, $queryAppointment) or die ("Error: ".pg_last_error());
 while ($row = pg_fetch_row($rs2)) {
+    $apptPatientID[] = $row[2];
     $status[] = $row[8];
     $appointmentID[] = $row[0];
     $treatmentID[] = $row[1];
@@ -35,16 +36,19 @@ while ($row = pg_fetch_row($rs2)) {
             $length = sizeof($nameArray);
             $lengthStatus = sizeof($status);
             for ($i = 0; $i < $length; $i++){
-                echo "<a style='text-align: center'><h3>Patient ID: $patientid[$i] <br> Patient Name: $nameArray[$i]<br></h3>";
+                if ($patientID == $patientid[$i]){
+                    $name = $nameArray[$i];
+                }
             }
+            echo "<a style='text-align: center'><h3>Patient ID: $patientID <br> Patient Name: $name<br></h3>";
             for ($j = 0; $j < $lengthStatus; $j++){
-                if ($status[$j] == "Not Complete"){
+                if ($status[$j] == "Not Complete" && $apptPatientID[$j] == $patientID){
                     echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
                 }
-                else if ($status[$j] == "In Progress"){
+                if ($status[$j] == "In Progress" && $apptPatientID[$j] == $patientID){
                     echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
                 }
-                else if ($status[$j] == "Complete"){
+                if ($status[$j] == "Complete" && $apptPatientID[$j] == $patientID){
                     echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
                 }
             }
