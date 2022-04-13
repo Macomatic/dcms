@@ -58,7 +58,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     $medicationType = 'Antibiotics';
   }
   if ($_POST['date'] != NULL && $_POST['startTime'] != NULL && $_POST['endTime'] != NULL && $_POST['apptType'] != NULL && $_POST['status'] != NULL && $_POST['room'] != NULL) {
-    $sql = "insert into dcms.Appointment(appointment_ID,treatment_ID,patient_ID,dentist_ID,date,startTime,endTime,appointmentType,status,room) values('".$apptNum."','".$_POST['treatmentType']."','".$patientID."','".$_POST['dentist']."','".$_POST['date']."','".$_POST['startTime']."','".$_POST['endTime']."','".$_POST['apptType']."','".$_POST['status']."','".$_POST['room']."')";
+    $sql = "insert into dcms.Appointment(appointment_ID,treatment_ID,patient_ID,dentist_ID,date,startTime,endTime,appointmentType,status,room) values('".$apptNum."','".$randomNum2."','".$patientID."','".$_POST['dentist']."','".$_POST['date']."','".$_POST['startTime']."','".$_POST['endTime']."','".$_POST['apptType']."','".$_POST['status']."','".$_POST['room']."')";
     $ret = pg_query($dbconnect, $sql);
   
   }
@@ -168,7 +168,11 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 
     <div class="form-group">
       <label for="status">Status:</label>
-      <input type="text" class="form-control" id="status" placeholder="Enter Status (Complete / Not Complete)" name="status">
+      <select name="status" id="status">
+        <option id="status" value="notComplete">Not Complete</option>
+        <option id="status" value='inProgress'>In Progress</option>
+        <option id="status" value='complete'>Complete</option>
+      </select> 
     </div>
 
     <div class="form-group">
