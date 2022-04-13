@@ -36,17 +36,20 @@ while ($row = pg_fetch_row($rs2)) {
             $length = sizeof($nameArray);
             $lengthStatus = sizeof($status);
             for ($i = 0; $i < $length; $i++){
-                echo "<a style='text-align: center'><h3>Patient ID: $patientid[$i] <br> Patient Name: $nameArray[$i]<br></h3>";
-                for ($j = 0; $j < $lengthStatus; $j++){
-                    if ($status[$j] == "Not Complete" && $apptPatientID[$j] == $patientid[$i]){
-                        echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
-                    }
-                    if ($status[$j] == "In Progress" && $apptPatientID[$j] == $patientid[$i]){
-                        echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
-                    }
-                    if ($status[$j] == "Complete" && $apptPatientID[$j] == $patientid[$i]){
-                        echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
-                    }
+                if ($patientID == $patientid[$i]){
+                    $name = $nameArray[$i];
+                }
+            }
+            echo "<a style='text-align: center'><h3>Patient ID: $patientID <br> Patient Name: $name<br></h3>";
+            for ($j = 0; $j < $lengthStatus; $j++){
+                if ($status[$j] == "Not Complete" && $apptPatientID[$j] == $patientID){
+                    echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
+                }
+                if ($status[$j] == "In Progress" && $apptPatientID[$j] == $patientID){
+                    echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
+                }
+                if ($status[$j] == "Complete" && $apptPatientID[$j] == $patientID){
+                    echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
                 }
             }
                
