@@ -4,7 +4,7 @@ require_once "config.php";
 
     /*
     appointment_ID INTEGER, 
-	treatment_ID INTEGER,
+	  treatment_ID INTEGER,
     patient_ID INTEGER,
     dentist INTEGER,
     date DATE,
@@ -36,24 +36,24 @@ $randomNum = random_int(1,99999999);
 $apptNum = $randomNum;
 
 $treatmentType = [];
-if ('treatmentType' == 1){
+if ($_POST['treatmentType'] == 1){
   $treatmentType = 'Root Canal';
 }
-if ('treatmentType' == 2){
+if ($_POST['treatmentType'] == 2){
   $treatmentType = 'Tooth Extraction';
 }
-if ('treatmentType' == 3){
+if ($_POST['treatmentType'] == 3){
   $treatmentType = 'Tooth Filling';
 }
 
 $medicationType = [];
-if ('medication' == 4){
+if ($_POST['medication'] == 4){
   $medicationType = 'Pain Killers';
 }
-if ('medication' == 5){
+if ($_POST['medication'] == 5){
   $medicationType = 'Anesthesia';
 }
-if ('medication' == 6){
+if ($_POST['medication'] == 6){
   $medicationType = 'Antibiotics';
 }
 
@@ -66,10 +66,9 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
   else {
     echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
   }
-  if ($_POST['treatmentType'] != NULL && $_POST['patientCondition'] != NULL && $treatmentType != NULL && $_POST['medication'] != NULL) {
-    $sql = "insert into dcms.Treatment(treatment_ID,patientCondition,treatmentType,medication) values('".$_POST['treatmentType']."','".$_POST['patientCondition']."','".$treatmentType."','".$_POST['apptType']."','".$_POST['status']."','".$_POST['room']."')";
+  if ($_POST['treatmentType'] != NULL && $_POST['patientCondition'] != NULL && $treatmentType != NULL && $medicationType != NULL) {
+    $sql = "insert into dcms.Treatment(treatment_ID,patientCondition,treatmentType,medication)values('".$_POST['treatmentType']."','".$_POST['patientCondition']."','".$treatmentType."','".$medicationType."')";
     $ret = pg_query($dbconnect, $sql);
-  
   }
   else {
     echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
