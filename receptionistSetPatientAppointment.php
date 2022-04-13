@@ -15,12 +15,14 @@ require_once "config.php";
     room VARCHAR(20),
     */
 
-$patientID = [];
-$query = 'select * from dcms.Patient';
-$rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
-while ($row = pg_fetch_row($rs)) {
-    $patientID[] = $row[0];
-}
+// $patientID = [];
+// $query = 'select * from dcms.Patient';
+// $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
+// while ($row = pg_fetch_row($rs)) {
+//     $patientID[] = $row[0];
+// }
+
+$patientID = $_GET['id'];
 
 $dentistNames = [];
 $dentistID = [];
@@ -66,7 +68,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
   <form method="post">
 
     <div class="form-group">
-      <label for="patientID"><?php echo "<h3>Patient ID: $patientID[0] <br></h3>" ?> </label>
+      <label for="patientID"><?php echo "<h3>Patient ID: $patientID <br></h3>" ?> </label>
     </div>
 
     <div class="form-group">

@@ -46,7 +46,7 @@
   <?php
     $size = sizeof($nameArray);
     for ($x = 0; $x < $size; $x++) {
-      echo "<br/><h4 style='font-weight:bold;'>".$nameArray[$x]."</h4>".$addressArray[$x]."<br/>".$emailArray[$x]."<br/><br/><a href='receptionistEditPatient.php?id=$idArray[$x]'><button>Edit Information</button></a><a href='receptionistSetPatientAppointment.php'><button>Set Appointment</button></a><br/>";
+      echo "<br/><h4 style='font-weight:bold;'>".$nameArray[$x]."</h4>".$addressArray[$x]."<br/>".$emailArray[$x]."<br/><br/><a href='receptionistEditPatient.php?id=$idArray[$x]'><button>Edit Information</button></a><a href='receptionistSetPatientAppointment.php?id=$idArray[$x]'><button>Set Appointment</button></a><br/>";
     }
   
   
