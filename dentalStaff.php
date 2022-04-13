@@ -18,7 +18,7 @@
     
     if ($dentist_ID == $row[3]){
 
-      $appointmentArray[] = $row[1]; 
+      $appointmentArray[] = $row[0]; 
       $dateArray[] = $row[4];
       $startArray[] = $row[5];
       $endArray[] = $row[6];
@@ -67,7 +67,11 @@
 
 <div class="container">
   <h1>Dental Staff</h1>
+  <a href="login.php">
+      <button>Log Out</button>
+    </a>
   <div>
+
   <?php
 
 for ($i = 0; $i < sizeof($startArray); $i++)  {

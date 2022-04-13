@@ -21,7 +21,7 @@ $patient_ID = $_GET['id'];
 $query = 'select * from dcms.appointment';
 $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
 while ($row = pg_fetch_row($rs)) {
-    if($row[8] == "complete"){
+    if($row[8] == "Complete" and $patient_ID == $row[2]){
 
         $treatment_ID[] = $row[1];
         $dentist_ID[] = $row[3];
@@ -95,6 +95,7 @@ for($i = 0; $i < sizeof($treatment_ID); $i++){
 <div class="container" style='text-align: center'>
     <title>Patient Medical History</title>
     <h1 >Patient Medical History</h1>
+
     <div>
         <?php
             
