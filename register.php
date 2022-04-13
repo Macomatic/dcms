@@ -18,7 +18,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
                                                                                                                                                                                                                                     // address, employmenttype, ssn, salary doesnt have a field in 'register' yet, giving temp values for now
         $ret = pg_query($dbconnect, $sql);
         if ($ret) {
-          echo "Data saved Successfully";
+          echo "User registered Successfully";
         }
 
         else {
@@ -27,7 +27,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
       }
 
       else {
-        echo "Data saved Successfully";
+        echo "Something Went Wrong";
       }
           
   }else{
