@@ -1,6 +1,22 @@
 <?php
-
+  // Include config file
+  require_once "config.php";
+  //error_reporting(E_ALL ^ E_DEPRECATED);
+  $nameArray = [];
+  $dobArray = [];
+  $emailArray = [];
+  $query = 'SELECT * FROM dcms.patient';
+  $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
+  while ($row = pg_fetch_row($rs)) {
+    $nameArray[] = $row[1];
+    $emailArray[] = $row[5];
+    $dobArray[] = $row[6];
+  }
+  
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,15 +29,22 @@
 <body>
 
 <div class="container">
-  <h2>Dental Staff</h2>
-  <form method="post">
-  
-  <button type="records" name="records" class="btn btn-primary">Access Patient Records</button>
+  <h1>Dental Staff</h1>
+  <div>
+  <?php
+
+for ($i = 0; $i < count($nameArray); $i++)  {
+  echo "<h3>".$nameArray[$i]."</h3>"."\t";
+  echo "<h5>"."Date Of Birth: ".$dobArray[$i]."</h4>"."\t";
+  echo "<h5>"."Email: ".$emailArray[$i]."</h5>";
+  echo "<a href='patientMedicalHistory.php'> <button>View Patient</button> </a>" ."<br/>";
+}
+  ?>
 
 </div>
-
-  </form>
 </div>
+
+
 
 
 </body>
