@@ -21,10 +21,11 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])) {
           header("Location: receptionist.php");
         }
         else if ($role == 'patient') {
-          header("Location: patient.php")
+          header("Location: patient.php");
         }
+    }
     else {
-        echo "Invalid Details";
+      echo "Invalid Details";
     }
 }
 ?>
