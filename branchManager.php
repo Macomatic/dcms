@@ -3,22 +3,32 @@
   require_once "config.php";
   //error_reporting(E_ALL ^ E_DEPRECATED);
 
-//   $nameArray = [];
-//   $addressArray = [];
-//   $emailArray = [];
-//   $idArray = [];
+  $bManagerID = $_GET['id'];
+  $nameArray = [];
+  $empIDArray = [];
+  $roleArray = [];
 
 
+    
+    $sql =  "select * from dcms.branchmanager";
+    $ret = pg_query($dbconnect, $sql);
+    while ($row = pg_fetch_row($ret)) {
+        if ($bManagerID == $row[0]) {
+            $branch_id = $row[1];
+        }
+        
+      }
 
-
-  $query = 'select * from dcms.Patient order by name'; // modify this code so it works for employees at a certain branch
-  $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
-  while ($row = pg_fetch_row($rs)) {
-    $idArray[] = $row[0];
-    $nameArray[] = $row[1];
-    $emailArray[] = $row[5];
-    $addressArray[] = $row[7];
-  }
+    $query = 'select * from dcms.Employee order by name';
+    $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
+    while ($row = pg_fetch_row($rs)) {
+        if ($row[7] == $branch_id) {
+        $nameArray[] = $row[1];
+        $empIDArray[] = $row[0];
+        $roleArray[] = $row[3];
+      }
+    }
+    
   
 ?>
 
@@ -34,7 +44,7 @@
 
 <div class="container">
   <h2>Branch Manager Page</h2>
-    <a href="bManagerAddEmployee.php">
+    <a href="bManagerAddEmployee.php?branchId=<?php echo $branch_id?>&id=<?php echo $bManagerID?>">
       <button>Add New Employee</button>
 
     </a>
@@ -44,7 +54,16 @@
   <?php
     $size = sizeof($nameArray);
     for ($x = 0; $x < $size; $x++) {
-      echo "<br/><h4 style='font-weight:bold;'>".$nameArray[$x]."</h4>".$addressArray[$x]."<br/>".$emailArray[$x]."<br/><br/><a href='receptionistEditPatient.php?id=$idArray[$x]'><button>Edit Information</button></a><a href='receptionistSetPatientAppointment.php?id=$idArray[$x]'><button>Set Appointment</button></a><br/>";
+        if ($roleArray[$x] == "dentistHygienist") {
+            $displayRole = "Occupation: Dentist/Hygienist";
+        }
+        else {
+            $displayRole = "Occupation: Receptionist";
+        }
+
+        $displayEmpID = "Employee ID: ".$empIDArray[$x];
+
+        echo "<br/><h4 style='font-weight:bold;'>".$nameArray[$x]."</h4>".$displayEmpID."<br/>".$displayRole."<br/><br/><a href='bManagerEditEmployee.php?id=$empIDArray[$x]'><button>Edit Information</button></a><a href='receptionistSetPatientAppointment.php?id=$empIDArray[$x]'><button>Delete Employee</button></a><br/>";
     }
   
   

@@ -2,6 +2,7 @@
 // Include config file
 require_once "config.php";
 
+
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
   if ($_POST['fName'] != NULL && $_POST['lName'] != NULL && $_POST['st'] != NULL && $_POST['city'] != NULL && $_POST['prov'] != NULL && $_POST['dob'] != NULL && $_POST['email'] != NULL && $_POST['phoneNum'] != NULL && $_POST['lName'] != NULL && $_POST['gender'] != NULL && $_POST['insurance'] != NULL && $_POST['ssn'] != NULL) {
     $fullName = $_POST['fName'].' '.$_POST['mName'].' '.$_POST['lName'];
@@ -10,7 +11,8 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     $userName = $fullName.$randomNum;
     $password = "password".$randomNum;
     $role = $_POST['role'];
-    $branchID = 123; // temp, need to grab this
+    $branchID = $_GET['branchId'];
+    $managerID = $_GET['id'];
     $sql = "insert into dcms.\"User\"(user_ID,username,password,role) values('".$randomNum."','".$userName."','".md5($password)."','".$role."')";
     $ret = pg_query($dbconnect, $sql);
     if($ret) {
@@ -54,7 +56,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 
 <div class="container">
   <h2>Add a new employee</h2>
-  <a href="branchManager.php">
+  <a href="branchManager.php?id=<?php echo $managerID ?>">
       <button>Go back</button>
     </a>
   <form method="post">

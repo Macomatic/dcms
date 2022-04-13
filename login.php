@@ -24,7 +24,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])) {
           header("Location: patient.php?id=$id");
         }
         else if ($role == 'branchManager') {
-          header("Location: branchManager.php");
+          header("Location: branchManager.php?id=$id");
         }
     }
     else {
