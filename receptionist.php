@@ -11,7 +11,7 @@
 
 
 
-  $query = 'select * from dcms.Patient';
+  $query = 'select * from dcms.Patient order by name';
   $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
   while ($row = pg_fetch_row($rs)) {
     $idArray[] = $row[0];
@@ -38,8 +38,6 @@
       <button>Add Patient</button>
 
     </a>
-    <label for="search">Search for a patient: </label>
-    <input type="text" id="search" name="search" placeholder="Search for a name">
 </div>
 
 <div class="container"> 
