@@ -147,7 +147,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     <h3>Time</h3>
     <div class="form-group">
       <label for="date">Appointment Date:</label>
-      <input type="text" class="form-control" id="date" placeholder="yyyy/mm/dd" name="date">
+      <input type="date" class="form-control" id="date" placeholder="yyyy/mm/dd" name="date">
     </div>
 
     <div class="form-group">

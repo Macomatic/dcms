@@ -20,29 +20,39 @@ CREATE TABLE Patient (
 	FOREIGN KEY (patient_ID)  REFERENCES "User"(user_ID)
 );
 
+CREATE TABLE Branch(
+    branch_ID INTEGER,
+    address VARCHAR(20),
+    PRIMARY KEY (branch_ID)
+);
+
 CREATE TABLE Employee(
     employee_ID INTEGER REFERENCES "User"(user_ID),
 	PRIMARY KEY (employee_ID),
-    name VARCHAR(20),
+    name VARCHAR(50),
     address VARCHAR(50),
     role VARCHAR(20),
     employmentType VARCHAR(20),
     ssn INTEGER,
     salary INTEGER,
-	FOREIGN KEY (employee_ID) REFERENCES "User"(user_ID)
+    branch_ID INTEGER REFERENCES Branch(branch_ID),
+	FOREIGN KEY (employee_ID) REFERENCES "User"(user_ID),
+	FOREIGN KEY (branch_ID) REFERENCES Branch(branch_ID)
 );
 
-CREATE TABLE Branch(
-    branch_ID INTEGER,
-    city VARCHAR(20),
-    PRIMARY KEY (branch_ID)
+CREATE TABLE BranchManager(
+	bManager_ID INTEGER REFERENCES "User"(user_ID),
+	branch_ID INTEGER REFERENCES Branch(branch_ID),
+	name VARCHAR(50),
+	FOREIGN KEY (bManager_ID) REFERENCES "User"(user_ID),
+	FOREIGN KEY (branch_ID) REFERENCES Branch(branch_ID)
 );
 
 CREATE TABLE Appointment(
     appointment_ID INTEGER,
 	treatment_ID INTEGER,
     patient_ID INTEGER,
-    dentist INTEGER,
+    dentist_ID INTEGER,
     date DATE,
     startTime VARCHAR(20),
     endTime VARCHAR(20),
@@ -51,7 +61,7 @@ CREATE TABLE Appointment(
     room VARCHAR(20),
     PRIMARY KEY (appointment_ID),
     FOREIGN KEY (patient_ID) REFERENCES Patient(patient_ID),
-    FOREIGN KEY (dentist) REFERENCES Employee(employee_ID)
+    FOREIGN KEY (dentist_ID) REFERENCES Employee(employee_ID)
 );
 
 CREATE TABLE AppointmentProcedure(
