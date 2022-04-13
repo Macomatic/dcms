@@ -1,14 +1,22 @@
-<html>
-    <title>Patient</title>
-    <h1 style="text-align: center">Patient Page</h1>
-    <body>
-        <h2 style="font-size: 20px;">Patient Medical History</h2>
-        <form method="POST" action="patientMedicalHistory.php">
-            <input type="submit" value="Get Medical History"/>
-        </form>
-        <h2 style="font-size: 20px;">Patient Appointments </h2>
-        <form method="POST" action="patientAppointments.php">
-            <input type="submit" value="Get Appointments"/>
-        </form>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DCMS: Patient </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2 >My Medical History</h2>
+        <a href="patientMedicalHistory.php">
+            <button>Get Medical History</button>
+        </a>
+        <h2 >My Appointments </h2>
+        <a href="patientAppointments.php">
+            <button>Get Appointments</button>
+        </a>
+    </div>
+</body>
 </html>

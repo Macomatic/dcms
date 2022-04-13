@@ -3,14 +3,33 @@
 require_once "config.php";
  
 $randomNum = random_int(1,99999999);
+$address = "123 Chapel St"; // temp address, needs to be set to form value
+$employmentType = "fullTime"; //values should be fullTime or partTime
+$ssn = "123123123";
+$salary = 12345;
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     
   $sql = "insert into dcms.\"User\"(user_ID,username,password,role)values('".$randomNum."','".$_POST['username']."','".md5($_POST['pwd']). "','". $_POST['role']."')";
   $ret = pg_query($dbconnect, $sql);
   if($ret){
-      
+      if ($_POST['role'] == 'dentistHygienist' || $_POST['role'] == 'receptionist') { 
+        $sql = "insert into dcms.employee(employee_ID,name,address,role,employmenttype,ssn,salary) values ('".$randomNum."','".$_POST['username']."','".$address."','".$_POST['role']."','".$employmentType."','".$ssn."','".$salary."')"; // setting 'name' to 'username' temporarily since we do not have a name field in register yet
+                                                                                                                                                                                                                                    // address, employmenttype, ssn, salary doesnt have a field in 'register' yet, giving temp values for now
+        $ret = pg_query($dbconnect, $sql);
+        if ($ret) {
           echo "Data saved Successfully";
+        }
+
+        else {
+          echo "Something Went Wrong";
+        }
+      }
+
+      else {
+        echo "Data saved Successfully";
+      }
+          
   }else{
       
           echo "Something Went Wrong";
