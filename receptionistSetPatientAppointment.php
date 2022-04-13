@@ -151,12 +151,12 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 
     <div class="form-group">
       <label for="startTime">Start Time:</label>
-      <input type="text" class="form-control" id="startTime" placeholder="Enter Start Time" name="startTime">
+      <input type="time" class="form-control" id="startTime" placeholder="Enter Start Time" name="startTime">
     </div>
 
     <div class="form-group">
       <label for="endTime">End Time:</label>
-      <input type="text" class="form-control" id="endTime" placeholder="Enter End Time" name="endTime">
+      <input type="time" class="form-control" id="endTime" placeholder="Enter End Time" name="endTime">
     </div>
     <br>
 
