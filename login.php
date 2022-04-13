@@ -17,6 +17,12 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])) {
         if ($role = 'dentistHygienist') {
           header("Location: dentalStaff.php?id=$id");
         }
+        else if ($role == 'receptionist') {
+          header("Location: receptionist.php");
+        }
+        else if ($role == 'patient') {
+          header("Location: patient.php")
+        }
     } else {
         echo "Invalid Details";
     }

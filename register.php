@@ -4,9 +4,9 @@ require_once "config.php";
  
 $randomNum = random_int(1,99999999);
 $address = "123 Chapel St"; // temp address, needs to be set to form value
-$employmentType = "fullTime"; //values should be fullTime or partTime
-$ssn = "123123123";
-$salary = 12345;
+$employmentType = "fullTime"; //values should be fullTime or partTime, default
+$ssn = "123123123"; // needs to be filled out by staff
+$salary = 12345; //default values
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     
