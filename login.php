@@ -7,9 +7,16 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])) {
     $sql = "select * from dcms.\"User\" where username ='" . pg_escape_string($dbconnect,$_POST['username']) . "' and password='" . $hashpassword . "'";
     $data = pg_query($dbconnect, $sql);
     $login_check = pg_num_rows($data);
+    while ($row = pg_fetch_row($data)) {
+      $id = $row[0];
+      $role = $row[3];
+    }
 
     if($login_check > 0) {
         echo "Login Successfully";
+        if ($role = 'dentistHygienist') {
+          header("Location: dentalStaff.php?id=$id");
+        }
     } else {
         echo "Invalid Details";
     }

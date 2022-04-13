@@ -12,6 +12,8 @@
     $emailArray[] = $row[5];
     $dobArray[] = $row[6];
   }
+
+  // $_GET['id'] --> Gets the ID of the currently logged in dentalHygienist
   
 ?>
 
