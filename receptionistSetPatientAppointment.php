@@ -14,16 +14,14 @@ require_once "config.php";
     status VARCHAR(20),
     room VARCHAR(20),
     */
-
-// $patientID = [];
-// $query = 'select * from dcms.Patient';
-// $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
-// while ($row = pg_fetch_row($rs)) {
-//     $patientID[] = $row[0];
-// }
+    /*
+    treatment_ID INTEGER,
+    patientCondition VARCHAR(20),
+    treatmentType VARCHAR(20),
+    medication VARCHAR(50),
+    */
 
 $patientID = $_GET['id'];
-
 $dentistNames = [];
 $dentistID = [];
 $queryEmployees = 'select * from dcms.employee';
@@ -31,6 +29,7 @@ $rs2 = pg_query($dbconnect, $queryEmployees) or die ("Error: ".pg_last_error());
 while ($row = pg_fetch_row($rs2)){
     $dentistNames[] = $row[1];
     $dentistID[] = $row[0];
+    $isDentist[] = $row[3];
 }
 
 $randomNum = random_int(1,99999999);
@@ -88,12 +87,40 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
                 <?php
                     $length = sizeof($dentistNames);
                     for ($i = 0; $i < $length; $i++){
+                      if ($isDentist[$i] == "dentistHygenist"){
                         echo "<option id='dentist' value='$dentistID[$i]'>$dentistNames[$i]</option>";
+                      }else{
+                        continue;
+                      }
                     }
                 ?>
             </select>
     </div>
-   
+    <h3>Treatment</h3>
+    <div class="form-group">
+      <label for="patientCondition">Patient Condition:</label>
+      <select name="patientCondition" id="patientCondition">
+        <option id="low" value="low">Low</option>;
+        <option id="moderate" value="moderate">Moderate</option>;
+        <option id="severe" value="severe">Severe</option>;
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="treatmentType">Treatment Type:</label>
+      <select name="treatmentType" id="treatmentType">
+        <option id="rootCanal" value="rootCanal">Root Canal</option>;
+        <option id="filling" value="filling">Filling</option>;
+        <option id="extraction" value="extraction">Tooth Extraction</option>;
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="medication">Medication:</label>
+      <select name="medication" id="medication">
+        <option id="painKillers" value="painKillers">Painkillers</option>;
+        <option id="anesthesia" value="anesthesia">Anesthesia</option>;
+        <option id="antibiotics" value="antibiotics">Antibiotics</option>;
+    </div>
+    <br>
     <br>
     <h3>Time</h3>
     <div class="form-group">
