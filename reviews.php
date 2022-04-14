@@ -48,19 +48,17 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     else {
       echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
     }
-
-    if ($professionalism[0] == 0 && $cleanliness[0] == 0 && $communication[0] == 0) {
-        if ($totalReviews[0] == 0){
-            $temp = 1;
-            $sql = "update dcms.branch set(professionalismscore,cleanlinessscore,communicationscore,totalreviews)=('".$_POST['professionalism']."','".$_POST['cleanliness']."','".$_POST['communication']."','".$temp."')where branch_id = '$branchID[0]'";
-            $ret = pg_query($dbconnect, $sql);
-            if ($ret){
-            echo "<p style='color:#39C16E;font-weight: bold;'> Added to the Branch database succesfully!"."</p>";
-            }
-            else {
-                echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
-            }
-        }else{
+    if ($totalReviews[0] == 0){
+        $temp = 1;
+        $sql = "update dcms.branch set(professionalismscore,cleanlinessscore,communicationscore,totalreviews)=('".$_POST['professionalism']."','".$_POST['cleanliness']."','".$_POST['communication']."','".$temp."')where branch_id = '$branchID[0]'";
+        $ret = pg_query($dbconnect, $sql);
+        if ($ret){
+        echo "<p style='color:#39C16E;font-weight: bold;'> Added to the Branch database succesfully!"."</p>";
+        }
+        else {
+            echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
+        }
+    }   else{
             $temp = $totalReviews[0] + 1;
             $prof2 = $_POST['professionalism'];
             $clean2 = $_POST['cleanliness'];
