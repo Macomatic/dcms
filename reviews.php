@@ -50,7 +50,9 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     }
     if ($totalReviews[0] == 0){
         $temp = 1;
-        $sql = "update dcms.branch set(professionalismscore,cleanlinessscore,communicationscore,totalreviews)=('".$_POST['professionalism']."','".$_POST['cleanliness']."','".$_POST['communication']."','".$temp."')where branch_id = '$branchID[0]'";
+        $sql = "update dcms.branch
+                set(professionalismscore,cleanlinessscore,communicationscore,totalreviews) =
+                ('".$_POST['professionalism']."','".$_POST['cleanliness']."','".$_POST['communication']."','".$temp."')";
         $ret = pg_query($dbconnect, $sql);
         if ($ret){
         echo "<p style='color:#39C16E;font-weight: bold;'> Added to the Branch database succesfully!"."</p>";
@@ -67,7 +69,9 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
         $prof = floor((($professionalism[0]*($temp-1)) + $prof2) / $temp);
         $clean = floor((($professionalism[0]*($temp-1)) + $clean2) / $temp);
         $comm = floor((($professionalism[0]*($temp-1)) + $comm2) / $temp);
-        $sql = "update dcms.branch set(professionalismscore,cleanlinessscore,communicationscore,totalreviews)=('".$prof."','".$clean."','".$comm."','".$temp."')where branch_id = '$branchID[0]'";
+        $sql = "update dcms.branch 
+                set(professionalismscore,cleanlinessscore,communicationscore,totalreviews)=
+                ('".$prof."','".$clean."','".$comm."','".$temp."')";
         $ret = pg_query($dbconnect, $sql);
         if ($ret){
             echo "<p style='color:#39C16E;font-weight: bold;'> Added to the Branch database succesfully!"."</p>";
