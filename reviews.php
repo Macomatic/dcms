@@ -49,7 +49,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
       echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
     }
 
-    if ($_POST['professionalism'] != NULL && $_POST['communication'] != NULL && $_POST['cleanliness'] != NULL) {
+    if ($_POST['professionalism'] == 0 && $_POST['communication'] == 0 && $_POST['cleanliness'] == 0) {
         if ($totalReviews[0] == 0){
             $temp = 1;
             $sql = "update dcms.branch set(professionalismscore,cleanlinessscore,communicationscore,totalreviews)=('".$_POST['professionalism']."','".$_POST['cleanliness']."','".$_POST['communication']."','".$temp."')where branch_id = '$branchID[0]'";
