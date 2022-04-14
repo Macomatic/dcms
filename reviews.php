@@ -58,23 +58,22 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
         else {
             echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
         }
-    }   else{
-            $temp = $totalReviews[0] + 1;
-            $prof2 = $_POST['professionalism'];
-            $clean2 = $_POST['cleanliness'];
-            $comm2 = $_POST['communication'];
+    }else{
+        $temp = $totalReviews[0] + 1;
+        $prof2 = $_POST['professionalism'];
+        $clean2 = $_POST['cleanliness'];
+        $comm2 = $_POST['communication'];
 
-            $prof = floor((($professionalism[0]*($temp-1)) + $prof2) / $temp);
-            $clean = floor((($professionalism[0]*($temp-1)) + $clean2) / $temp);
-            $comm = floor((($professionalism[0]*($temp-1)) + $comm2) / $temp);
-            $sql = "update dcms.branch set(professionalismscore,cleanlinessscore,communicationscore,totalreviews)=('".$prof."','".$clean."','".$comm."','".$temp."')where branch_id = '$branchID[0]'";
-            $ret = pg_query($dbconnect, $sql);
-            if ($ret){
-                echo "<p style='color:#39C16E;font-weight: bold;'> Added to the Branch database succesfully!"."</p>";
-            }else{
-                echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
-            }   
-        }
+        $prof = floor((($professionalism[0]*($temp-1)) + $prof2) / $temp);
+        $clean = floor((($professionalism[0]*($temp-1)) + $clean2) / $temp);
+        $comm = floor((($professionalism[0]*($temp-1)) + $comm2) / $temp);
+        $sql = "update dcms.branch set(professionalismscore,cleanlinessscore,communicationscore,totalreviews)=('".$prof."','".$clean."','".$comm."','".$temp."')where branch_id = '$branchID[0]'";
+        $ret = pg_query($dbconnect, $sql);
+        if ($ret){
+            echo "<p style='color:#39C16E;font-weight: bold;'> Added to the Branch database succesfully!"."</p>";
+        }else{
+            echo "<p style='color:#EA0730;font-weight: bold;'>"."Please fill out all required fields marked with an *"."</p>";
+        }   
     }
 }
 
