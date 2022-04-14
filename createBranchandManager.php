@@ -16,7 +16,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     $ret = pg_query($dbconnect, $sql);
     if($ret) {
         
-      $sql = "insert into dcms.Branch(branch_ID,address,professionalismscore,cleanlinessscore,communicationscore) values('".$branchNum."','".$fullAddress."','".$score."','".$score."','".$score."','".$score."')";
+      $sql = "insert into dcms.Branch(branch_ID,address,professionalismscore,cleanlinessscore,communicationscore,totalReviews) values('".$branchNum."','".$fullAddress."','".$score."','".$score."','".$score."','".$score."')";
       $ret = pg_query($dbconnect, $sql);
       if($ret) {
           $sql = "insert into dcms.BranchManager(bManager_ID,branch_ID,name) values('".$randomNum. "','".$branchNum."','".$fullName."')";
