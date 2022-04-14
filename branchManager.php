@@ -41,7 +41,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<a href="logout.php"><button>Log Out</button></a>
 <div class="container">
   <h2>Branch Manager Page</h2>
     <a href="bManagerAddEmployee.php?branchId=<?php echo $branch_id?>&id=<?php echo $bManagerID?>">

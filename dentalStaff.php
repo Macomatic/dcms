@@ -64,12 +64,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<a href="logout.php"><button>Log Out</button></a>
 <div class="container">
   <h1>Dental Staff</h1>
-  <a href="login.php">
-      <button>Log Out</button>
-    </a>
   <div>
 
   <?php
