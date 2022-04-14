@@ -63,6 +63,8 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])) {
      
     <input type="submit" name="submit" class="btn btn-primary" value="Login">
     <br>
+    <a href="forgotPassword.php">Forgot Password?</a>
+    <br>
     <a href="register.php">Are you a patient that doesn't have an account? Register!</a>
   </form>
 </div>
