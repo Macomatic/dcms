@@ -93,8 +93,14 @@
             $sql = "update dcms.employee set (name,address,role,employmentType,ssn,salary,branch_ID) =('$fullName','$fullAddress','$jobRole','$empType','$ssn','$salary','$branch_ID')where employee_ID = '$employeeInfo[0]'";
             $ret = pg_query($dbconnect, $sql);
             if ($ret) {
-                echo "<p style='color:#39C16E;font-weight: bold;'>".$_POST['fName']."'s information was updated and saved to the database succesfully!\nRefresh the page or go back to view the updated information."."</p>";
-
+                $sql = "update dcms.\"User\" set role = '$jobRole' where user_id = '$employeeInfo[0]'";
+                $ret = pg_query($dbconnect, $sql);
+                if ($ret) {
+                    echo "<p style='color:#39C16E;font-weight: bold;'>".$_POST['fName']."'s information was updated and saved to the database succesfully!\nRefresh the page or go back to view the updated information."."</p>";
+                }
+                else {
+                    echo "Something went wrong";
+                }
             }
 
             else { 
@@ -209,7 +215,7 @@
     <div class="form-group">
       <label for="role">Job role*:</label>
       <select name="role" id="role" class="form-control">
-        <option selected='<?php echo $employeeInfo[3]?>'><?php echo ucwords($employeeInfo[3]) ?></option>
+        <option selected='<?php echo strtolower($employeeInfo[3])?>'><?php echo ucwords($employeeInfo[3]) ?></option>
         <option value="dentistHygienist">Dentist/Hygienist</option>
         <option value="receptionist">Receptionist</option>
     </select>
