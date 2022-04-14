@@ -63,7 +63,7 @@
 
         $displayEmpID = "Employee ID: ".$empIDArray[$x];
 
-        echo "<br/><h4 style='font-weight:bold;'>".$nameArray[$x]."</h4>".$displayEmpID."<br/>".$displayRole."<br/><br/><a href='bManagerEditEmployee.php?id=$empIDArray[$x]&managerID=$bManagerID'><button>Edit Information</button></a><a href='receptionistSetPatientAppointment.php?id=$empIDArray[$x]'><button>Delete Employee</button></a><br/>";
+        echo "<br/><h4 style='font-weight:bold;'>".$nameArray[$x]."</h4>".$displayEmpID."<br/>".$displayRole."<br/><br/><a href='bManagerEditEmployee.php?id=$empIDArray[$x]&managerID=$bManagerID'><button>Edit Information</button></a><a href='bManagerDeleteEmployee.php?id=$empIDArray[$x]'><button>Delete Employee</button></a><br/>";
     }
   
   
