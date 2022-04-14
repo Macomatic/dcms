@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <h2 style='text-align: center'><a href="logout.php"><button>Log Out</button></a></h2>
     <div class="container">
         <h2 >My Medical History</h2>
         <a href='patientMedicalHistory.php?id=<?php echo $patientID ?>'>

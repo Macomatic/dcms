@@ -13,6 +13,8 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])) {
     }
 
     if($login_check > 0) {
+        session_start();
+        $_SESSION['sid']=session_id();
         echo "Login Successfully";
         if ($role == 'dentistHygienist') {
           header("Location: dentalStaff.php?id=$id");

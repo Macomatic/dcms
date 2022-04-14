@@ -18,6 +18,8 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 
         $ret = pg_query($dbconnect, $sql);
         if ($ret) {
+          session_start();
+          $_SESSION['sid']=session_id();
           echo "User registered Successfully";
           header("Location: patient.php?id=$randomNum");
         }
