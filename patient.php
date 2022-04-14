@@ -15,19 +15,20 @@
 <body>
     <a href="logout.php"><button>Log Out</button></a>
     <div class="container">
-        <h2 >My Medical History</h2>
+        <h2>Patient Page</h2>
+        <h3 >My Medical History</h3>
         <a href='patientMedicalHistory.php?id=<?php echo $patientID ?>'>
             <button>Get Medical History</button>
         </a>
-        <h2 >My Appointments </h2>
+        <h3 >My Appointments </h3>
         <a href='patientAppointments.php?id=<?php echo $patientID ?>'>
             <button>Get Appointments</button>
         </a>
-        <h2 >Reviews </h2>
+        <h3 >Reviews </h3>
         <a href='reviews.php?id=<?php echo $patientID ?>'>
             <button>Make a Review</button>
         </a>
-        <h2 >Insurance Claims</h2>
+        <h3 >Insurance Claims</h3>
         <a href='patientInsuranceClaim.php?id=<?php echo $patientID ?>'>
             <button>Make A Claim</button>
         </a>    
