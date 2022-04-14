@@ -16,7 +16,7 @@
   $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
   while ($row = pg_fetch_row($rs)) {
     
-    if ($dentist_ID == $row[3]){
+    if ($dentist_ID == $row[3] && $row[8] != "Complete"]){
 
       $appointmentArray[] = $row[0]; 
       $dateArray[] = $row[4];
