@@ -20,7 +20,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
       if($ret) {
         echo "<p style='color:#39C16E;font-weight: bold;'>".$_POST['fName']." was added to the patient database succesfully!"."</p>";
         // /header('Location: receptionist.php');
-        $password = "password".$randomPassNum;
+        $password = "password";//.$randomPassNum;
       }
       else { 
         echo "Something Went Wrong";

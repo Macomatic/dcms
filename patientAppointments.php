@@ -45,30 +45,17 @@ while ($row = pg_fetch_row($rs2)) {
             for ($j = 0; $j < $lengthStatus; $j++){
                 if ($status[$j] == "Not Complete" && $apptPatientID[$j] == $patientID){
                     echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
-                    echo "<form method='post'> <input style='text-align: center' type='submit' name='submit' value='Cancel'></form> ";
                     $d = $appointmentID[$j];
+                    $t = $treatmentID[$j];
+                    $p = $patientID;
+                    //echo "<form method='post'> <input style='text-align: center' type='submit' name='submit' value='Cancel'></form> ";
+                    echo "<h4 style='text-align: center'>"."<a href='patientDeleteAppointments.php?id=$d&treatmentID=$t&pID=$p'><button>Cancel Appointment</button></a><br/>";
                 }
             }
                
         ?>
     </div>
     
-    <?php
 
-        if(isset($_POST['submit'])&&!empty($_POST['submit'])){ 
-            echo $d;
-            $sql = "delete from dcms.appointment where appointment_id = $d";
-            $rs = pg_query($dbconnect, $sql) or die ("Error: ".pg_last_error());
-            if ($rs){
-                echo "Deleted Successully";
-                header("Location:patient.php?id=$patientID");
-            }
-            else{
-                echo "Unsuccessful";
-            }
-        }
-    
-    
-    ?>
 
 </html>
