@@ -36,6 +36,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 
 <div class="container">
   <h2>Would you like to cancel your appointment?</h2>
+  <h4>A small cancellation fee will be charged on the account's associated card</h3>
   <form method="post">
     <a href="">
         <input type="submit" name="submit" value="Yes, delete">
