@@ -47,12 +47,6 @@ while ($row = pg_fetch_row($rs2)) {
                 if ($status[$j] == "Not Complete" && $apptPatientID[$j] == $patientID){
                     echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
                 }
-                if ($status[$j] == "In Progress" && $apptPatientID[$j] == $patientID){
-                    echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
-                }
-                if ($status[$j] == "Complete" && $apptPatientID[$j] == $patientID){
-                    echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
-                }
             }
                
         ?>
