@@ -102,6 +102,8 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     </div>
      
     <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+    <br>
+    <a href="login.php">Already have an account? Log in!</a>
   </form>
 </div>
 
