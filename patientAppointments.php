@@ -31,6 +31,7 @@ while ($row = pg_fetch_row($rs2)) {
 <html>
     <title>Patient Upcoming Appointments</title>
     <h1 style="text-align: center">Patient Upcoming Appointments</h1>
+    <h2 style='text-align: center'><a href="patient.php?id=<?php echo $patientID ?>"><button>Go back</button></a></h2>
     <div>
         <?php
             $length = sizeof($nameArray);
@@ -38,9 +39,10 @@ while ($row = pg_fetch_row($rs2)) {
             for ($i = 0; $i < $length; $i++){
                 if ($patientID == $patientid[$i]){
                     $name = $nameArray[$i];
+                    break;
                 }
             }
-            echo "<a style='text-align: center'><h3>Patient ID: $patientID <br> Patient Name: $name<br></h3>";
+            echo "<a style='text-align: center'><h3>Patient ID: $patientID <br> Patient Name: $name <br></h3>";
             for ($j = 0; $j < $lengthStatus; $j++){
                 if ($status[$j] == "Not Complete" && $apptPatientID[$j] == $patientID){
                     echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
