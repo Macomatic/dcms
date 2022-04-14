@@ -59,7 +59,8 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])) {
       <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
     </div>
      
-    <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+    <input type="submit" name="submit" class="btn btn-primary" value="Login">
+    <a href="register.php">Don't have an account? Register!</a>
   </form>
 </div>
 </body>
