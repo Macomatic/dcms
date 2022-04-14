@@ -5,15 +5,21 @@ require_once "config.php";
 $randomNum = strval(random_int(1,99999999));
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
+
+  $firstName = str_replace("'", "''", $_POST['firstName']);
+  $lastName = str_replace("'", "''", $_POST['lastName']);
+  $insurance = str_replace("'", "''", $_POST['insurance']);
+  $address = str_replace("'", "''", $_POST['address']);
     
   $sql = "insert into dcms.\"User\"(user_ID,username,password,role)values(".$randomNum.",'".$_POST['username']."','".md5($_POST['pwd']). "','patient')";
   $ret = pg_query($dbconnect, $sql);
   if($ret){
-        $sql = "insert into dcms.patient(patient_ID,name,gender,insurance,ssn,email,dateOfBirth,address,phoneNumber) values (".$randomNum.",'".$_POST['firstname']." ".$_POST['lastname']."','".$_POST['gender']."','".$_POST['insurance']."',".$_POST['ssn'].",'".$_POST['email']."','".$_POST['dateOfBirth']."','".$_POST['address']."','".$_POST['phoneNumber']."')";
+        $sql = "insert into dcms.patient(patient_ID,name,gender,insurance,ssn,email,dateOfBirth,address,phoneNumber) values (".$randomNum.",'".$firstName." ".$lastName."','".$_POST['gender']."','".$insurance."',".$_POST['ssn'].",'".$_POST['email']."','".$_POST['dateOfBirth']."','".$address."','".$_POST['phoneNumber']."')";
 
         $ret = pg_query($dbconnect, $sql);
         if ($ret) {
           echo "User registered Successfully";
+          header("Location: patient.php?id=$randomNum");
         }
 
         else {
@@ -54,13 +60,13 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     </div>
 
     <div class="form-group">
-      <label for="firstname">First Name:</label>
-      <input type="text" class="form-control" id="firstname" placeholder="Enter first name" name="firstname">
+      <label for="firstName">First Name:</label>
+      <input type="text" class="form-control" id="firstName" placeholder="Enter first name" name="firstName">
     </div>
 
     <div class="form-group">
-      <label for="lastname">Last Name:</label>
-      <input type="text" class="form-control" id="lastname" placeholder="Enter last name" name="lastname">
+      <label for="lastName">Last Name:</label>
+      <input type="text" class="form-control" id="lastName" placeholder="Enter last name" name="lastName">
     </div>
 
     <div class="form-group">
