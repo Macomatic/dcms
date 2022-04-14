@@ -22,6 +22,10 @@
         <a href='patientAppointments.php?id=<?php echo $patientID ?>'>
             <button>Get Appointments</button>
         </a>
+        <h2 >Insurance Claims</h2>
+        <a href='patientInsuranceClaim.php?id=<?php echo $patientID ?>'>
+            <button>Make A Claim</button>
+        </a>
     </div>
 </body>
 </html>
