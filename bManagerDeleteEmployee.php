@@ -3,30 +3,32 @@
   // Include config file
   require_once "config.php";
   //error_reporting(E_ALL ^ E_DEPRECATED);
-  $employeeInfo = [];
   $managerID = $_GET['managerID'];
+  $empID = $_GET['id'];
 
   $query = 'select * from dcms.Employee';
   $rs = pg_query($dbconnect, $query) or die ("Error: ".pg_last_error());
   while ($row = pg_fetch_row($rs)) {
     if ($row[0] == $_GET['id']) {
         //echo $_GET['name'];
-        $employeeInfo[] = $row[0]; // employee id 
-        $employeeInfo[] = $row[1]; // name
-        $employeeInfo[] = $row[2]; // address
-        $employeeInfo[] = $row[3]; // role
-        $employeeInfo[] = $row[4]; // employment type
-        $employeeInfo[] = $row[5]; // ssn
-        $employeeInfo[] = $row[6]; // salary
-        $employeeInfo[] = $row[7]; // branch id
+        $name = $row[1]; // name
+
         break;
     }
     
   }
+  
 
-  if(isset($_POST['submit'])&&!empty($_POST['submit'])){
-    $sql = 'delete from dcms.employee where '
-
+  if(isset($_POST['submit'])){
+    $sql = "delete from dcms.employee where employee_id = $empID";
+    $rs = pg_query($dbconnect, $sql) or die ("Error: ".pg_last_error());
+    if ($rs) {
+        echo "Deleted successfully";
+        header("Location: branchManager.php?id=$managerID");
+    }
+    else {
+        echo "Something went wrong";
+    }
   }
 
 ?>
@@ -42,9 +44,13 @@
 <body>
 
 <div class="container">
-  <h2>Delete</h2>
-    <a href="bManagerAddEmployee.php?branchId=<?php echo $branch_id?>&id=<?php echo $bManagerID?>">
-      <button>Add New Employee</button>
-
+  <h2>Would you like to delete <?php echo $name ?> from the Employee database?</h2>
+  <form method="post">
+    <a href="">
+        <input type="submit" name="submit" value="Yes, delete">
     </a>
+    <a href="branchManager.php?id=<?php echo $managerID ?>">
+        <input type="button" value="No, go back">
+    </a>
+    </form>
 </div>
