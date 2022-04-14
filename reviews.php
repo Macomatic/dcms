@@ -29,8 +29,8 @@ while ($row = pg_fetch_row($rs2)) {
 
 ?>
 <html>
-    <title>Patient Upcoming Appointments</title>
-    <h1 style="text-align: center">Patient Upcoming Appointments</h1>
+    <title>Create a Review</title>
+    <h1 style="text-align: center">Create a Review</h1>
     <h2 style='text-align: center'><a href="patient.php?id=<?php echo $patientID ?>"><button>Go back</button></a></h2>
     <div>
         <?php
@@ -42,13 +42,15 @@ while ($row = pg_fetch_row($rs2)) {
                     break;
                 }
             }
-            echo "<a style='text-align: center'><h3>Patient ID: $patientID <br> Patient Name: $name <br></h3>";
+            echo "<a style='text-align: center'><h3>Patient ID: $patientID <br> Patient Name: $name <br> Here is a list of your 'Completed' Appointments.</h3>";
             for ($j = 0; $j < $lengthStatus; $j++){
-                if ($status[$j] == "Not Complete" && $apptPatientID[$j] == $patientID){
+                if ($status[$j] == "Complete" && $apptPatientID[$j] == $patientID){
                     echo "<a style='text-align: center'><h4>Treatment ID: $treatmentID[$j], Appointment ID: $appointmentID[$j], Appointment Status: $status[$j]<br></h4>";
                 }
             }
-               
         ?>
+        <div>
+            
+        </div>
     </div>
 </html>

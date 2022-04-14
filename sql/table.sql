@@ -23,6 +23,9 @@ CREATE TABLE Patient (
 CREATE TABLE Branch(
     branch_ID INTEGER,
     address VARCHAR(50),
+    professionalismScore INTEGER,
+    cleanlinessScore INTEGER,
+    communicationScore INTEGER,
     PRIMARY KEY (branch_ID)
 );
 
@@ -101,10 +104,14 @@ CREATE TABLE Invoice(
 );
 
 CREATE TABLE Reviews(
+    review_ID INTEGER,
     patient_ID INTEGER,
+    branch_ID INTEGER,
     professionalism VARCHAR(100),
     communication VARCHAR(100),
     cleanliness VARCHAR(100),
     value INTEGER,
-    FOREIGN KEY (patient_ID) REFERENCES Patient(patient_ID)
+    PRIMARY KEY (review_ID),
+    FOREIGN KEY (patient_ID) REFERENCES Patient(patient_ID),
+    FOREIGN KEY (branch_ID) REFERENCES Branch(branch_ID)
 );

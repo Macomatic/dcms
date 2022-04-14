@@ -60,6 +60,9 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
   if ($_POST['date'] != NULL && $_POST['startTime'] != NULL && $_POST['endTime'] != NULL && $_POST['apptType'] != NULL && $_POST['status'] != NULL && $_POST['room'] != NULL) {
     $sql = "insert into dcms.Appointment(appointment_ID,treatment_ID,patient_ID,dentist_ID,date,startTime,endTime,appointmentType,status,room) values('".$apptNum."','".$randomNum2."','".$patientID."','".$_POST['dentist']."','".$_POST['date']."','".$_POST['startTime']."','".$_POST['endTime']."','".$_POST['apptType']."','".$_POST['status']."','".$_POST['room']."')";
     $ret = pg_query($dbconnect, $sql);
+    if ($ret){
+      echo "<p style='color:#39C16E;font-weight: bold;'> Added to the patient database succesfully!"."</p>";
+    }
   
   }
   else {

@@ -7,9 +7,9 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     $fullName = $_POST['fName'].' '.$_POST['mName'].' '.$_POST['lName'];
     $fullAddress = $_POST['st'].', '.$_POST['city'].', '.$_POST['prov'];
     $randomNum = random_int(1,99999999);
-    $randomPassNum = random_int(0,9999999);
-    $userName = $fullName.$randomNum;
-    $password = $password.$randomPassNum;
+    //$randomPassNum = random_int(0,9999999);
+    $userName = trim($fullName.$randomNum);
+    $password = "password";//$randomPassNum;
     $role = "patient";
     $sql = "insert into dcms.\"User\"(user_ID,username,password,role) values('".$randomNum."','".$userName."','".md5($password)."','".$role."')";
     $ret = pg_query($dbconnect, $sql);
@@ -20,6 +20,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
       if($ret) {
         echo "<p style='color:#39C16E;font-weight: bold;'>".$_POST['fName']." was added to the patient database succesfully!"."</p>";
         // /header('Location: receptionist.php');
+        $password = "password".$randomPassNum;
       }
       else { 
         echo "Something Went Wrong";
