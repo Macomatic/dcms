@@ -8,7 +8,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     $fullAddress = $_POST['st'].', '.$_POST['city'].', '.$_POST['prov'];
     $randomNum = random_int(1,99999999);
     //$randomPassNum = random_int(0,9999999);
-    $userName = trim($fullName.$randomNum);
+    $userName = str_replace(' ','',$fullName.$randomNum);
     $password = "password";//$randomPassNum;
     $role = "patient";
     $sql = "insert into dcms.\"User\"(user_ID,username,password,role) values('".$randomNum."','".$userName."','".md5($password)."','".$role."')";

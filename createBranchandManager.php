@@ -9,13 +9,14 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     $randomNum = random_int(1,99999999);
     $branchNum = $_POST['branchID'];
     $userName = $fullName;
+    $score = 0;
     $password = "password";
     $role = "branchManager";
     $sql = "insert into dcms.\"User\"(user_ID,username,password,role) values('".$randomNum."','".$userName."','".md5($password)."','".$role."')";
     $ret = pg_query($dbconnect, $sql);
     if($ret) {
         
-      $sql = "insert into dcms.Branch(branch_ID,address) values('".$branchNum."','".$fullAddress."')";
+      $sql = "insert into dcms.Branch(branch_ID,address,professionalismscore,cleanlinessscore,communicationscore) values('".$branchNum."','".$fullAddress."','".$score."','".$score."','".$score."','".$score."')";
       $ret = pg_query($dbconnect, $sql);
       if($ret) {
           $sql = "insert into dcms.BranchManager(bManager_ID,branch_ID,name) values('".$randomNum. "','".$branchNum."','".$fullName."')";
