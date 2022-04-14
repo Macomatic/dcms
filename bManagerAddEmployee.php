@@ -8,8 +8,9 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     $fullName = $_POST['fName'].' '.$_POST['mName'].' '.$_POST['lName'];
     $fullAddress = $_POST['st'].', '.$_POST['city'].', '.$_POST['prov'];
     $randomNum = random_int(1,99999999);
-    $userName = $fullName.$randomNum;
-    $password = "password".$randomNum;
+    $userName = str_replace('  ','',$fullName.$randomNum);
+    $userName = str_replace(' ','',$fullName.$randomNum);
+    $password = "password";//$randomNum;
     $role = $_POST['role'];
     $branchID = $_GET['branchId'];
     $managerID = $_GET['id'];
