@@ -46,7 +46,9 @@
   <h2>Branch Manager Page</h2>
     <a href="bManagerAddEmployee.php?branchId=<?php echo $branch_id?>&id=<?php echo $bManagerID?>">
       <button>Add New Employee</button>
-
+    </a>
+    <a href="viewBranch.php?branchId=<?php echo $branch_id?>&id=<?php echo $bManagerID?>">
+      <button>View branch information</button>
     </a>
 </div>
 

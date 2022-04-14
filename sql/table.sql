@@ -26,6 +26,7 @@ CREATE TABLE Branch(
     professionalismScore INTEGER,
     cleanlinessScore INTEGER,
     communicationScore INTEGER,
+    totalReviews INTEGER,
     PRIMARY KEY (branch_ID)
 );
 
