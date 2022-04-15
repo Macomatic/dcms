@@ -78,6 +78,18 @@ for($i = 0; $i < sizeof($treatment_ID); $i++){
 }
 }
 
+$role = $_GET['role'];
+
+if($role == "patient"){
+    echo "<a href='patient.php?id=$patient_ID'> <button>Go Back</button> </a>" ."<br/>";
+}
+
+else if ($role == "staff"){
+
+    $d_ID = $_GET['dentistID'];
+    echo "<a href='dentalstaff.php?id=$d_ID'> <button>Go Back</button> </a>" ."<br/>";
+}
+
 
 
 

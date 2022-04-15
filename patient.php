@@ -17,7 +17,7 @@
     <div class="container">
         <h2>Patient Page</h2>
         <h3 >My Medical History</h3>
-        <a href='patientMedicalHistory.php?id=<?php echo $patientID ?>'>
+        <a href='patientMedicalHistory.php?id=<?php echo $patientID ?>&role=patient'>
             <button>Get Medical History</button>
         </a>
         <h3 >My Appointments </h3>
