@@ -116,6 +116,7 @@ CREATE TABLE Reviews(
     FOREIGN KEY (patient_ID) REFERENCES Patient(patient_ID),
     FOREIGN KEY (branch_ID) REFERENCES Branch(branch_ID)
 );
+
 INSERT INTO "User"(
 	user_id, username, password, role)
 	VALUES (123456, 'John123', 'randompassword', 'branchmanager');
