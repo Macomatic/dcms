@@ -6,7 +6,7 @@ INSERT INTO "User"(
 /* Decrypted password: randomchars */
 INSERT INTO "User"(
 	user_id, username, password, role)
-	VALUES (123457, 'Sam456', '17040d3ef4242c5746f34c9166f2bee5', 'employee');
+	VALUES (123457, 'Sam456', '17040d3ef4242c5746f34c9166f2bee5', 'dentistHygienist');
 
 /* Decrypted password: randomnums*/
 INSERT INTO "User"(
