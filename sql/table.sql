@@ -26,6 +26,7 @@ CREATE TABLE Branch(
     professionalismScore INTEGER,
     cleanlinessScore INTEGER,
     communicationScore INTEGER,
+    totalReviews INTEGER,
     PRIMARY KEY (branch_ID)
 );
 
@@ -45,7 +46,6 @@ CREATE TABLE Employee(
 
 CREATE TABLE BranchManager(
 	bManager_ID INTEGER REFERENCES "User"(user_ID),
-    PRIMARY KEY (bManager_ID)
 	branch_ID INTEGER REFERENCES Branch(branch_ID),
 	name VARCHAR(50),
 	FOREIGN KEY (bManager_ID) REFERENCES "User"(user_ID),
