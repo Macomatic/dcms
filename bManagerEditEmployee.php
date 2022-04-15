@@ -215,7 +215,7 @@
     <div class="form-group">
       <label for="role">Job role*:</label>
       <select name="role" id="role" class="form-control">
-        <option selected='<?php echo strtolower($employeeInfo[3])?>'><?php echo strtolower($employeeInfo[3]) ?></option>
+        <option selected='<?php echo $employeeInfo[3]?>'><?php echo $employeeInfo[3] ?></option>
         <option value="dentistHygienist">Dentist/Hygienist</option>
         <option value="receptionist">Receptionist</option>
     </select>
