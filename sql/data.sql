@@ -1,12 +1,17 @@
+/* Decrypted password: randompassword */
 INSERT INTO "User"(
 	user_id, username, password, role)
-	VALUES (123456, 'John123', 'randompassword', 'branchmanager');
+	VALUES (123456, 'John123', '48e03915a80e6ae6953aef8a20d980fb', 'branchmanager');
+
+/* Decrypted password: randomchars */
 INSERT INTO "User"(
 	user_id, username, password, role)
-	VALUES (123457, 'Sam456', 'randomchars', 'employee');
+	VALUES (123457, 'Sam456', '17040d3ef4242c5746f34c9166f2bee5', 'employee');
+
+/* Decrypted password: randomnums*/
 INSERT INTO "User"(
 	user_id, username, password, role)
-	VALUES (123458, 'Alexa789', 'randomnums', 'patient');
+	VALUES (123458, 'Alexa789', 'c3e3c9f4fc9055795c227293b259b300', 'patient');
 INSERT INTO patient(
 	patient_id, name, gender, insurance, ssn, email, dateofbirth, address, phonenumber)
 	VALUES (123458, 'Alexa M.', 'female', 'SunLife', 123123123, 'alexa@yahoo.ca', '1999-09-13', '123 Fake St.', '1231234567');
