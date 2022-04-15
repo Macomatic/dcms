@@ -64,8 +64,15 @@
         }
 
         $displayEmpID = "Employee ID: ".$empIDArray[$x];
+        $userQuery = "select username, password from dcms.\"User\" where user_id =".$empIDArray[$x];
+        $userRs = pg_query($dbconnect, $userQuery) or die ("Error: ".pg_last_error());
+        $arr1 = pg_fetch_all_columns($userRs,0);
+        $username = $arr1[0];
+        $password = "password";
+        $displayUsername = "Username: ".$username;
+        $displayPassword = "Password: ".$password;
 
-        echo "<br/><h4 style='font-weight:bold;'>".$nameArray[$x]."</h4>".$displayEmpID."<br/>".$displayRole."<br/><br/><a href='bManagerEditEmployee.php?id=$empIDArray[$x]&managerID=$bManagerID'><button>Edit Information</button></a><a href='bManagerDeleteEmployee.php?id=$empIDArray[$x]&managerID=$bManagerID'><button>Delete Employee</button></a><br/>";
+        echo "<br/><h4 style='font-weight:bold;'>".$nameArray[$x]."</h4>".$displayEmpID."<br/>".$displayRole."<br/>".$displayUsername."<br/>".$displayPassword."<br/><br/><a href='bManagerEditEmployee.php?id=$empIDArray[$x]&managerID=$bManagerID'><button>Edit Information</button></a><a href='bManagerDeleteEmployee.php?id=$empIDArray[$x]&managerID=$bManagerID'><button>Delete Employee</button></a><br/>";
     }
   
   
