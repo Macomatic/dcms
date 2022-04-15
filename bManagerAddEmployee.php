@@ -24,7 +24,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
         $sql = "insert into dcms.Employee(employee_ID,name,address,role,employmentType,ssn,salary,branch_ID) values('".$randomNum."','".$fullName."','".$fullAddress."','".$role."','".$_POST['empType']."','".$_POST['ssn']."','".$_POST['salary']."','".$branchID."')";
         $ret = pg_query($dbconnect, $sql);
         if ($ret) {
-            echo "<p style='color:#39C16E;font-weight: bold;'>".$_POST['fName']." was added to the employee database succesfully!"."</p>";
+            echo "<p style='color:#39C16E;font-weight: bold;'>".$_POST['fName']." was added to the employee database succesfully!<br>Username: $userName<br>Password: $password"."</p>";
         }
       }
       else { 
