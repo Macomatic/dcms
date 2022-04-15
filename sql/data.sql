@@ -35,5 +35,5 @@ INSERT INTO invoice(
 	dateofissue, contactinfo, patientinsurance, amount)
 	VALUES ('2022-04-23', 'branch12dentist@gmail.com', 'SunLife, checkup is covered semi-annually', 0);
 INSERT INTO reviews(
-	review_id, patient_id, branch_id, professionalismScore, communicationScore, cleanlinessScore)
+	review_id, patient_id, branch_id, professionalism, communication, cleanliness)
 	VALUES (1, 123458, 12, 'well experienced and knowledgeable', 'concise and clear', 'spotless, no dust or dirt', 5);
