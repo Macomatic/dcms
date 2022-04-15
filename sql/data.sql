@@ -11,8 +11,8 @@ INSERT INTO patient(
 	patient_id, name, gender, insurance, ssn, email, dateofbirth, address, phonenumber)
 	VALUES (123458, 'Alexa M.', 'female', 'SunLife', 123123123, 'alexa@yahoo.ca', '1999-09-13', '123 Fake St.', '1231234567');
 INSERT INTO branch(
-	branch_id, address, professionalismScore, communicationScore, cleanlinessScore)
-	VALUES (12, '12 Branch st.', 5, 5, 5);
+	branch_id, address, professionalismScore, communicationScore, cleanlinessScore, totalReviews)
+	VALUES (12, '12 Branch st.', 5, 5, 5, 1);
 INSERT INTO employee(
 	employee_id, name, address, role, employmenttype, ssn, salary, branch_id)
 	VALUES (123457, 'Sam W.', '12 Employee St.', 'Dentist', 'Full-Time', 241543234, 90000, 12);
@@ -35,5 +35,5 @@ INSERT INTO invoice(
 	dateofissue, contactinfo, patientinsurance, amount)
 	VALUES ('2022-04-23', 'branch12dentist@gmail.com', 'SunLife, checkup is covered semi-annually', 0);
 INSERT INTO reviews(
-	review_id, patient_id, branch_id, professionalism, communication, cleanliness)
+	review_id, patient_id, branch_id, professionalism, communication, cleanliness, value)
 	VALUES (1, 123458, 12, 'well experienced and knowledgeable', 'concise and clear', 'spotless, no dust or dirt', 5);
