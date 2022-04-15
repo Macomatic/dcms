@@ -1,7 +1,7 @@
 /* Decrypted password: randompassword */
 INSERT INTO "User"(
 	user_id, username, password, role)
-	VALUES (123456, 'John123', '48e03915a80e6ae6953aef8a20d980fb', 'branchmanager');
+	VALUES (123456, 'John123', '48e03915a80e6ae6953aef8a20d980fb', 'branchManager');
 
 /* Decrypted password: randomchars */
 INSERT INTO "User"(
