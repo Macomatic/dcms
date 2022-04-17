@@ -1,5 +1,6 @@
 # dcms
-A Dental Clinic Management System (DCMS) for a dental centre with clinics in major cities across Canada
+A Dental Clinic Management System (DCMS) for a dental centre with clinics in major cities across Canada.
+A project done for uOttawa's CSI2132 Database's Class. Uses PHP and PostgreSQL
 
 Create a file named envvars.php and add this line of code
 
